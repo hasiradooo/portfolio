@@ -16,10 +16,11 @@ export default function Footer() {
     { label: dict.footer.socialLinks.bsky, href: "https://bsky.app/profile/hasiradoo.rabbittale.co", icon: "BS" },
     { label: dict.footer.socialLinks.patreon, href: "https://patreon.com/gecko_creative", icon: "PA" },
     { label: dict.footer.socialLinks.discord, href: "https://discord.com/users/569975072417251378", icon: "DC" },
-    { label: dict.footer.socialLinks.telegram, href: "https://t.me/gecko_creative", icon: "TG" },
+    { label: dict.footer.socialLinks.telegram, href: "https://t.me/hasiradooo", icon: "TG" },
   ];
 
   const navigationLinks = [
+    { label: dict.common.nav.personal, href: "/personal" },
     { label: dict.footer.navigationLinks.home, href: "/" },
     { label: dict.footer.navigationLinks.about, href: "/about" },
     { label: dict.footer.navigationLinks.projects, href: "/projects" },

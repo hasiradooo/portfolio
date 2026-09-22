@@ -95,9 +95,9 @@ export default function ContactPage() {
     },
     {
       title: dict?.contact?.otherWays?.telegram?.title || "Telegram",
-      value: dict?.contact?.otherWays?.telegram?.value || "@hasiradoo",
+      value: dict?.contact?.otherWays?.telegram?.value || "@hasiradooo",
       description: dict?.contact?.otherWays?.telegram?.description || "I'm here 99% of the time",
-      href: "https://t.me/hasiradoo",
+      href: "https://t.me/hasiradooo",
       icon: "Send"
     },
     {

@@ -10,6 +10,7 @@ export type ProjectCategory = 'games' | 'webApps' | 'desktop' | 'mobile' | 'webs
 export interface TranslationDictionary {
   common: {
     nav: {
+      personal: string;
       home: string;
       about: string;
       cv: string;
@@ -491,6 +492,7 @@ export interface TranslationDictionary {
 export const dict: TranslationDictionary = {
   common: {
     nav: {
+      personal: "Personal",
       home: "Home",
       about: "About",
       cv: "My CV",
@@ -1368,7 +1370,7 @@ export const dict: TranslationDictionary = {
       },
       telegram: {
         title: "Telegram",
-        value: "@hasiradoo",
+        value: "@hasiradooo",
         description: "I'm here 99% of the time"
       },
       twitter: {

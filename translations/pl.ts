@@ -10,6 +10,7 @@ import { TranslationDictionary } from './en'
 export const dict: TranslationDictionary = {
   common: {
     nav: {
+      personal: "Prywatnie",
       home: "Strona główna",
       about: "O mnie",
       cv: "Moje CV",
@@ -616,7 +617,7 @@ export const dict: TranslationDictionary = {
       },
       telegram: {
         title: "Telegram",
-        value: "@hasiradoo",
+        value: "@hasiradooo",
         description: "Jestem tu 99% czasu"
       },
       twitter: {

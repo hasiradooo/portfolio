@@ -13,6 +13,7 @@ import { SolidLogoTextGecko } from "@/icons/assets/logo/logo_text_gecko";
 const navigationLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
+  { href: "/personal", label: "Personal" },
   { href: "/projects", label: "Projects" },
   { href: "/prices", label: "Prices" },
   { href: "/contact", label: "Contact" },

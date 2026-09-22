@@ -1,8 +1,6 @@
 import { Geist_Mono } from "next/font/google"
 import "./globals.css"
-import Header from "@/components/header"
-import Footer from "@/components/footer"
-import { FloatingControls } from "@/components/floating-controls"
+import { SiteShell } from "@/components/site-shell"
 import { ThemeProvider } from "./providers/theme-provider"
 import { Metadata, Viewport } from "next"
 import { Analytics } from '@vercel/analytics/next';
@@ -19,7 +17,7 @@ const geistMono = Geist_Mono({
 const startYear = 2016;
 
 const getBirthday = () => {
-  return calculateAge("2001-08-11");
+  return calculateAge("2001-07-11");
 }
 
 const getExperienceYears = () => {
@@ -117,14 +115,7 @@ export default function RootLayout({
       <body className={`${geistMono.className} antialiased min-h-screen flex flex-col select-none`}>
         <LanguageProvider>
           <ThemeProvider>
-            <Header />
-            <main className="flex flex-col flex-1">
-              <div className="h-full flex-1 max-w-screen-md mx-auto w-full sm:border-l sm:border-r border-border bg-background [&>section:not(#hero)]:pt-6 [&>section:is(:last-child)]:pb-6">
-                {children}
-              </div>
-            </main>
-            <Footer />
-            <FloatingControls />
+            <SiteShell>{children}</SiteShell>
             <Analytics />
             <Toaster />
           </ThemeProvider>
