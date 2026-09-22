@@ -16,9 +16,3 @@ Band photographs are used as fan scrapbook portraits. Their copyrights remain wi
 | kalam-latin-400.woff2 | Kalam, distributed by [Fontsource](https://fontsource.org/fonts/kalam); SIL Open Font License, included as Kalam-LICENSE.txt |
 
 The decorative paw is an inline SVG placeholder, not a depiction of Kiro's fursona. Paper, tape, pins, stickers, CD and equalizer are CSS/SVG interface elements.
-
-## Added mineral sample and drawings
-
-- `mineral-example.webp`: [Smithsonian amethyst image](https://ids.si.edu/ids/deliveryService/id/ark%3A/65665/m3c971ff91809f4c0eb74b77344cbb78f7), retrieved as a sample collection photograph. [Collection record](https://www.si.edu/object/quartz-var-amethyst:nmnhmineralsciences_1116786). The sample is explicitly labeled on the page.
-- `flags/gb.png`, `flags/pl.png`, `flags/cz.png`: country flag PNG images from [Flagcdn](https://flagcdn.com/), served locally.
-- `adventure-time.webp`: [Adventure Time season 8 cover, via Rotten Tomatoes](https://www.rottentomatoes.com/tv/adventure_time/s08). Adventure Time artwork belongs to its respective rightsholders.

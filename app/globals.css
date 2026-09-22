@@ -142,3 +142,15 @@
 .grecaptcha-badge {
   display: none !important;
 }
+
+/* Route-scoped canvas colors: also paint Safari's safe-area and overscroll surfaces.
+   :has() applies before hydration and stops matching as soon as the route unmounts. */
+html:has([data-personal-page]),
+body:has([data-personal-page]) {
+  background-color: #2142c7 !important;
+  color-scheme: light !important;
+}
+html:has([data-personal-palette="autumn"]),
+body:has([data-personal-palette="autumn"]) {
+  background-color: #853c2c !important;
+}

@@ -15,6 +15,8 @@
   background-image: linear-gradient(#ffffff10 1px, transparent 1px), linear-gradient(90deg, #ffffff10 1px, transparent 1px);
   background-size: 32px 32px;
   min-height: 100vh;
+  min-height: 100svh;
+  padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
   font-family: "Trebuchet MS", Arial, sans-serif;
   font-size: 16px;
   line-height: 1.55;
@@ -1451,5 +1453,18 @@
 
   .footer>p span {
     display: block;
+  }
+}
+@media (max-width: 760px) {
+  .browserBar {
+    background: var(--blue);
+    color: #fffbea;
+    border-bottom: 1px solid #ffffff40;
+  }
+  .motionButton {
+    background: #ffffff14;
+    color: #fffbea;
+    border-color: #ffffff80;
+    box-shadow: none;
   }
 }

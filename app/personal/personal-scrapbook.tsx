@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState, type CSSProperties } from "react";
-import { BIRTH_DATE, FURSONA_IMAGE, MINERAL_PHOTO, favoriteBands, personalAge } from "@/lib/personal";
+import { BIRTH_DATE, FURSONA_IMAGE, favoriteBands, personalAge } from "@/lib/personal";
 import styles from "./personal.module.css";
 
 const tilt = (rotation: string) => ({ "--tilt": rotation } as CSSProperties);
@@ -40,6 +40,19 @@ export default function PersonalScrapbook() {
   const [animated, setAnimated] = useState(false);
   const [autumn, setAutumn] = useState(false);
   useEffect(() => {
+    // The server supplies the initial tag; keep browser chrome in sync with the palette.
+    const meta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+    if (!meta) return;
+    const previous = meta.content;
+    const color = autumn ? "#853c2c" : "#2142c7";
+    meta.content = color;
+    return () => {
+      // Do not overwrite a new route's theme color if Next has already changed it.
+      if (meta.isConnected && meta.content === color) meta.content = previous;
+    };
+  }, [autumn]);
+
+  useEffect(() => {
     const query = window.matchMedia("(prefers-reduced-motion: reduce)");
     const sync = () => setAnimated(!query.matches);
     sync(); query.addEventListener("change", sync);
@@ -47,7 +60,7 @@ export default function PersonalScrapbook() {
   }, []);
 
   return (
-    <div lang="en" className={`${styles.world} ${autumn ? styles.autumn : ""}`} data-motion={animated ? "on" : "off"}>
+    <div lang="en" className={`${styles.world} ${autumn ? styles.autumn : ""}`} data-motion={animated ? "on" : "off"} data-personal-page data-personal-palette={autumn ? "autumn" : "blue"}>
       <a href="#scrapbook" className={styles.skip}>Skip to my scrapbook</a>
       <header className={styles.browserBar}>
         <Link href="/" className={styles.back}>← portfolio</Link>
@@ -169,10 +182,9 @@ export default function PersonalScrapbook() {
             <figure className={`${styles.polaroid} ${styles.mineral}`} style={tilt("-4deg")}>
               <span className={styles.pin} aria-hidden="true" />
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={MINERAL_PHOTO.src} alt={MINERAL_PHOTO.alt} width="800" height="800" loading="lazy" />
+              <img src="/personal/mineral.webp" alt="A blue crystal specimen from my mineral collection" width="800" height="800" loading="lazy" />
               <figcaption>ooh, pretty rock! ✧</figcaption>
               <p>I love collecting awesome-looking minerals. Nature really knows how to make art.</p>
-              {MINERAL_PHOTO.isExample && <span className={styles.exampleLabel}>EXAMPLE PHOTO · MY OWN COLLECTION PIC SOON</span>}
               <span className={styles.mineralSparkle} aria-hidden="true">✧</span>
             </figure>
 
