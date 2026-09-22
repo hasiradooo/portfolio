@@ -3,6 +3,6 @@
  * the official YouTube video with its own visible player and controls.
  */
 export const RIVER_PLAYER: { youtubeId: string; audioSrc: string | null } = {
-  youtubeId: "wfWIs2gFTAM",
+  youtubeId: "3BXDsVD6O10",
   audioSrc: null,
 };
