@@ -81,39 +81,6 @@
   clip-path: none;
 }
 
-.browserBar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 18px;
-  padding: 10px 26px;
-  background: #f2eedf;
-  border-bottom: 3px solid #141a38;
-  font: 12px/1.4 "Courier New", monospace;
-}
-
-.back {
-  font-weight: 700;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.address {
-  border: 1px solid #b8b3a1;
-  background: #fffdf3;
-  padding: 5px 18px;
-  text-align: center;
-  flex: 1;
-  max-width: 520px;
-}
-
-.motionButton {
-  background: #dedbcc;
-  padding: 6px 10px;
-  border: 1px solid #77745c;
-  box-shadow: inset 1px 1px #fff;
-}
-
 .canvas {
   max-width: 1280px;
   margin: 0 auto;
@@ -544,48 +511,6 @@
   font-size: 14px;
   background: conic-gradient(#aab5c1, #f1f7fc, #b3acf7, #ecfded, #839ecc, #e1e5ed, #aab5c1);
   border: 1px solid #6c7088;
-}
-
-.equalizer {
-  height: 45px;
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 3px;
-  background: #151a35;
-  padding: 6px;
-}
-
-.equalizer i {
-  flex: 1;
-  height: var(--bar);
-  max-height: 100%;
-  background: repeating-linear-gradient(to top, #b8e865 0 3px, #151a35 3px 4px);
-  transform-origin: bottom;
-  animation: bounce 1.2s ease-in-out var(--delay) infinite alternate;
-}
-
-.playLink {
-  display: block;
-  text-align: center;
-  border: 1px solid #757782;
-  border-top-color: #fff;
-  border-left-color: #fff;
-  padding: 7px 4px;
-  margin-top: 10px;
-  font: bold 11px "Courier New", monospace;
-  text-decoration: none;
-}
-
-.playLink:hover {
-  background: #f2efea;
-}
-
-.noAutoplay {
-  display: block;
-  font: 9px "Courier New", monospace;
-  margin-top: 7px;
-  text-align: center;
 }
 
 .gifNote {
@@ -1074,16 +999,6 @@
   }
 }
 
-@keyframes bounce {
-  from {
-    transform: scaleY(.3);
-  }
-
-  to {
-    transform: scaleY(1);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
 
   .world *,
@@ -1185,13 +1100,9 @@
     justify-self: center;
   }
 
-  .browserBar {
-    padding: 10px 15px;
-  }
+  
 
-  .address {
-    display: none;
-  }
+  
 
   .welcomeStrip {
     justify-content: center;
@@ -1305,13 +1216,9 @@
     padding: 16px 24px 30px;
   }
 
-  .browserBar {
-    font-size: 10px;
-  }
+  
 
-  .motionButton {
-    padding: 7px;
-  }
+  
 
   .hero {
     padding-top: 68px;
@@ -1455,16 +1362,14 @@
     display: block;
   }
 }
-@media (max-width: 760px) {
-  .browserBar {
-    background: var(--blue);
-    color: #fffbea;
-    border-bottom: 1px solid #ffffff40;
-  }
-  .motionButton {
-    background: #ffffff14;
-    color: #fffbea;
-    border-color: #ffffff80;
-    box-shadow: none;
-  }
-}
+
+
+/* Personal notes and the door into Kiro's fiction notebook. */
+.pronouns { font: 18px "Courier New", monospace; margin-bottom: 12px !important; }
+.datingNote { font-size: 12px; line-height: 1.6; max-width: 32em; margin-top: 8px !important; }
+.storyInvite { position: relative; display: flex; align-items: center; gap: 40px; margin: 95px 14px 0; padding: 38px; background: #fff6bd; box-shadow: 9px 10px 0 #10237055; transform: rotate(-1deg); }
+.storyInvite h2 { font: 38px/1.2 "Kalam", cursive; margin: 12px 0 !important; }
+.storyInvite p { max-width: 570px; }
+.storyInvite > a { flex-shrink: 0; padding: 16px; color: #fffdf0; background: #2142c7; font: 18px "Kalam", cursive; box-shadow: 4px 4px 0 #172048; transform: rotate(3deg); }
+.storyScribble { position: absolute; right: 15px; bottom: -40px; color: #f5ffaa; font: 21px "Kalam", cursive; transform: rotate(-4deg); }
+@media(max-width:760px) { .storyInvite { display: block; padding: 28px 24px; margin: 65px 3px 0; } .storyInvite > a { display: inline-block; margin-top: 24px; } .storyInvite h2 { font-size: 31px; } }

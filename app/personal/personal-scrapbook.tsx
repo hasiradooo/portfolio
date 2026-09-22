@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { useEffect, useState, type CSSProperties } from "react";
 import { BIRTH_DATE, FURSONA_IMAGE, favoriteBands, personalAge } from "@/lib/personal";
+import ScrapbookBar from "./scrapbook-bar";
+import RiverPlayer from "./river-player";
+import ScrapbookIcon from "./scrapbook-icon";
 import styles from "./personal.module.css";
 
 const tilt = (rotation: string) => ({ "--tilt": rotation } as CSSProperties);
@@ -62,13 +65,11 @@ export default function PersonalScrapbook() {
   return (
     <div lang="en" className={`${styles.world} ${autumn ? styles.autumn : ""}`} data-motion={animated ? "on" : "off"} data-personal-page data-personal-palette={autumn ? "autumn" : "blue"}>
       <a href="#scrapbook" className={styles.skip}>Skip to my scrapbook</a>
-      <header className={styles.browserBar}>
-        <Link href="/" className={styles.back}>← portfolio</Link>
-        <span className={styles.address}>★ home / kiro / personal.html</span>
-        <button type="button" onClick={() => setAnimated(!animated)} aria-pressed={animated} className={styles.motionButton}>
-          {animated ? "Ⅱ pause the GIF party" : "▷ start the GIF party"}
+      <ScrapbookBar href="/" backLabel="portfolio" address="home / kiro / personal.html">
+        <button type="button" onClick={() => setAnimated(!animated)} aria-pressed={animated}>
+          <ScrapbookIcon name={animated ? "pause" : "play"} /> {animated ? "pause the GIF party" : "start the GIF party"}
         </button>
-      </header>
+      </ScrapbookBar>
 
       <div className={styles.canvas}>
         <div className={styles.welcomeStrip}>
@@ -86,7 +87,7 @@ export default function PersonalScrapbook() {
             <span className={styles.biSticker}>proudly bi ♡</span>
           </div>
           <nav className={styles.jumpLinks} aria-label="Scrapbook sections">
-            <a href="#who">who’s this?</a><span>✶</span><a href="#good-stuff">the good stuff</a><span>✶</span><a href="#music">my noise</a>
+            <a href="#who">who’s this?</a><span>✶</span><a href="#good-stuff">the good stuff</a><span>✶</span><a href="#music">my noise</a><span>✶</span><Link href="/personal/story">Kiro’s story</Link>
           </nav>
         </div>
 
@@ -94,7 +95,7 @@ export default function PersonalScrapbook() {
           <article id="who" className={`${styles.paper} ${styles.identity}`} style={tilt("-3deg")}>
             <span className={styles.pin} aria-hidden="true" />
             <span className={styles.smallLabel}>HELLO, INTERNET HUMAN!</span>
-            <h2>I’m Krystian<span className={styles.nameArrow}>↙</span></h2>
+            <h2>I’m Krystian<span className={styles.nameArrow}><ScrapbookIcon name="down" /></span></h2>
             <p className={styles.aliases}>Kris / Kiro / hasira</p>
             <div className={styles.age}><span aria-hidden="true">✳</span> <Age /></div>
             <p>Designer. Developer.<br /><em>Trying to be an artist sometimes.</em></p>
@@ -126,7 +127,7 @@ export default function PersonalScrapbook() {
               )}
             </div>
             <figcaption>here’s my fursona :3</figcaption>
-            <span className={styles.fursonaArrow} aria-hidden="true">⤴</span>
+            <span className={styles.fursonaArrow} aria-hidden="true"><ScrapbookIcon name="curve" /></span>
           </figure>
 
           <section id="good-stuff" className={`${styles.paper} ${styles.loves}`} style={tilt("2deg")}>
@@ -141,22 +142,14 @@ export default function PersonalScrapbook() {
               <li><span>05</span> blue, in every possible shade</li>
               <li><span>06</span> still water. no bubbles, thanks.</li>
               <li><span>07</span> cartoons & awesome-looking minerals</li>
-              <li><span>08</span> games — PC & tabletop!</li>
+              <li><span>08</span> games, PC & tabletop!</li>
+              <li><span>09</span> plants. bring on the greenery!</li>
             </ul>
             <p className={styles.handNote}>a little cozy goes a long way</p>
           </section>
 
           <div className={styles.middleStack}>
-            <aside className={styles.player} aria-label="Favorite song">
-              <div className={styles.playerTitle}><span>♫ kiro’s media player</span><span aria-hidden="true">_ □ ×</span></div>
-              <div className={styles.playerBody}>
-                <span className={styles.smallLabel}>IF I HAD TO PICK ONE…</span>
-                <div className={styles.song}><span className={styles.disc} aria-hidden="true">●</span><div><h2>River</h2><p>Eminem feat. Ed Sheeran</p></div></div>
-                <div className={styles.equalizer} aria-hidden="true">{Array.from({ length: 26 }, (_, i) => <i key={i} style={{ "--bar": `${12 + (i * 17) % 32}px`, "--delay": `${i * -0.13}s` } as CSSProperties} />)}</div>
-                <a className={styles.playLink} href="https://www.youtube.com/results?search_query=Eminem+River+feat+Ed+Sheeran+official" target="_blank" rel="noopener noreferrer">▶ find it on YouTube ↗</a>
-                <span className={styles.noAutoplay}>a favourite, not an easy decision.</span>
-              </div>
-            </aside>
+            <RiverPlayer animated={animated} />
             <div className={styles.gifNote}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={animated ? "/personal/cat.gif" : "/personal/cat-still.png"} width="120" height="100" alt="A cat bobbing along" loading="lazy" />
@@ -168,7 +161,7 @@ export default function PersonalScrapbook() {
             <span className={styles.pin} aria-hidden="true" />
             <span className={styles.smallLabel}>RESPECTFULLY…</span>
             <h2>nope.</h2>
-            <ul><li>Kids.<br /><span>Especially when they’re loud.</span></li><li>Loud noises in general.<br /><span>Let me have my peace.</span></li><li>Sparkling water.<br /><span>Why is my water fighting me?</span></li></ul>
+            <ul><li>Kids.<br /><span>Especially when they’re loud.</span></li><li>Loud noises in general.<br /><span>Let me have my peace.</span></li><li>Sparkling water.<br /><span>Why is my water fighting me?</span></li><li>Mean & intolerant people.<br /><span>A little kindness goes a long way.</span></li></ul>
             <span className={styles.hatesDoodle} aria-hidden="true">×_×</span>
           </section>
         </div>
@@ -176,7 +169,7 @@ export default function PersonalScrapbook() {
         <section className={styles.sideQuests} aria-labelledby="side-quests-title">
           <div className={styles.musicHeading}>
             <div><span className={styles.smallLabel}>A FEW MORE PIECES OF ME</span><h2 id="side-quests-title">side quests <em>& lore.</em></h2></div>
-            <p>the collection keeps growing ↙</p>
+            <p>the collection keeps growing <ScrapbookIcon name="down" /></p>
           </div>
           <div className={styles.extraBoard}>
             <figure className={`${styles.polaroid} ${styles.mineral}`} style={tilt("-4deg")}>
@@ -205,7 +198,9 @@ export default function PersonalScrapbook() {
               <span className={styles.pin} aria-hidden="true" />
               <span className={styles.smallLabel}>CHARACTER SHEET / THE PERSONAL BITS</span>
               <h2 id="lore-title">a little lore.</h2>
+              <p className={styles.pronouns}>he / him</p>
               <p className={styles.single}>I’m single <span>&lt;/3</span></p>
+              <p className={styles.datingNote}>Sorry, guys. I’m looking for a girl right now. Nothing personal; I’m just tired of boys.</p>
               <div className={styles.personality}><span>INFJ</span><span>2w1</span></div>
               <p className={styles.loreNote}>had daddy issues.</p>
               <span className={styles.loreDoodle} aria-hidden="true">♡ → &lt;/3</span>
@@ -217,7 +212,7 @@ export default function PersonalScrapbook() {
               <h2 id="streaming-title">streaming <em>soon!</em></h2>
               <p>Mostly games & talking silly stuff.<br />Come for the games. Stay for whatever comes out of my mouth.</p>
               <div className={styles.streamTags}><span>✦ games</span><span>✦ silly conversations</span><span>✦ me being me</span></div>
-              <span className={styles.streamDoodle} aria-hidden="true">▶</span>
+              <span className={styles.streamDoodle} aria-hidden="true"><ScrapbookIcon name="play" /></span>
             </section>
 
             <section className={`${styles.paper} ${styles.languages}`} style={tilt("-3deg")} aria-labelledby="languages-title">
@@ -233,25 +228,32 @@ export default function PersonalScrapbook() {
           </div>
         </section>
 
+        <section className={styles.storyInvite} aria-labelledby="story-invite-title">
+          <span className={styles.tape} aria-hidden="true" />
+          <div><span className={styles.smallLabel}>A DIFFERENT KIND OF LORE</span><h2 id="story-invite-title">there’s a story in here.</h2><p>Meet Kiro, Rin & Susie. Follow the chapters, get to know the characters, and stay a little longer.</p></div>
+          <Link href="/personal/story">open Kiro’s notebook <ScrapbookIcon name="arrow" /></Link>
+          <span className={styles.storyScribble} aria-hidden="true">one page at a time ♡</span>
+        </section>
+
         <section id="music" className={styles.music}>
           <div className={styles.musicHeading}><div><span className={styles.smallLabel}>THE SOUNDTRACK INSIDE MY HEAD</span><h2>my kind of <em>noise.</em></h2></div><p>rock. hard rock. a little metal.<br />and jazz when the mood is right. ♫</p></div>
           <div className={styles.bandGrid}>
             {favoriteBands.map((band, i) => (
-              <a className={`${styles.polaroid} ${styles.band}`} href={band.url} target="_blank" rel="noopener noreferrer" key={band.name} style={tilt(band.rotation)} aria-label={`${band.name} — official website (opens in a new tab)`}>
+              <a className={`${styles.polaroid} ${styles.band}`} href={band.url} target="_blank" rel="noopener noreferrer" key={band.name} style={tilt(band.rotation)} aria-label={`${band.name} · official website (opens in a new tab)`}>
                 <span className={i % 2 === 0 ? styles.pin : styles.tape} aria-hidden="true" />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={`/personal/${band.image}.webp`} width="500" height="400" alt={band.name} loading="lazy" />
-                <h3>{band.name}</h3><p>{band.note}</p><span className={styles.bandNumber}>0{i + 1} ↗</span>
+                <h3>{band.name}</h3><p>{band.note}</p><span className={styles.bandNumber}>0{i + 1} <ScrapbookIcon name="arrow" /></span>
               </a>
             ))}
           </div>
-          <p className={styles.musicFootnote}>click a polaroid. find your next obsession. ↗</p>
+          <p className={styles.musicFootnote}>click a polaroid. find your next obsession. <ScrapbookIcon name="arrow" /></p>
         </section>
 
         <footer className={styles.footer}>
           <div className={styles.badges}><span>MADE OF PIXELS & FEELINGS</span><span className={styles.biBadge}>BI & DOING MY THING</span><span>STILL WATER FAN CLUB</span><span>BEST VIEWED WITH A HOT CHOCOLATE</span></div>
           <p>you made it to the bottom! <span>stay a little weird.</span></p>
-          <div className={styles.footerLinks}><a href="https://t.me/hasiradooo" target="_blank" rel="noopener noreferrer">say hi @hasiradooo ↗</a><Link href="/">back to the portfolio ↗</Link><button type="button" aria-pressed={autumn} onClick={() => setAutumn(!autumn)}>{autumn ? "✦ bring back the blue" : "🍂 make it autumn"}</button></div>
+          <div className={styles.footerLinks}><a href="https://t.me/hasiradooo" target="_blank" rel="noopener noreferrer">say hi @hasiradooo <ScrapbookIcon name="arrow" /></a><Link href="/">back to the portfolio <ScrapbookIcon name="arrow" /></Link><button type="button" aria-pressed={autumn} onClick={() => setAutumn(!autumn)}>{autumn ? "✦ bring back the blue" : "🍂 make it autumn"}</button></div>
           <small>Krystian / Kris / Kiro / hasira · an ongoing work in progress, just like me.</small>
         </footer>
       </div>
