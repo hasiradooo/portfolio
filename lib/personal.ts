@@ -14,8 +14,8 @@ export const FURSONA_IMAGE: string | null = null;
 // Replace the photo and set isExample to false when adding your own collection.
 export const MINERAL_PHOTO = {
   src: "/personal/mineral.webp",
-  alt: "Purple amethyst crystals from the Smithsonian collection",
-  isExample: true,
+  alt: "Bright blue Chalcanthite",
+  isExample: false,
 };
 
 export const favoriteBands = [
