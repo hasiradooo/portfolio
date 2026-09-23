@@ -158,6 +158,7 @@ export default function PersonalScrapbook() {
                 <li><span>12</span> little thoughtful gestures</li>
                 <li><span>13</span> comfortable silence & honest conversations</li>
                 <li><span>14</span> sharing our weird little obsessions</li>
+                <li><span>15</span> a little bit of dark humor.. okay a lot of.</li>
               </ul>
             </div>
             <p className={styles.scrollHint}>more little joys below <ScrapbookIcon name="down" /></p>
