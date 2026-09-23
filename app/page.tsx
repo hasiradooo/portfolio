@@ -1,39 +1,36 @@
-"use client";
+import type { Metadata, Viewport } from "next";
+import PersonalScrapbook from "./_scrapbook/personal-scrapbook";
 
-import HeroSection from "@/components/sections/hero-section";
-import FeaturedProjectsSection from "@/components/sections/featured-projects-section";
-import ConnectSection from "@/components/sections/socials-section";
-import CTASection from "@/components/sections/cta-section";
-import { SectionSeparator } from "@/components/sections/SectionSeparator";
-import { ExperienceTimeline } from "@/components/sections/Experience";
-import { useLanguage } from "./providers/language-provider";
+export const metadata: Metadata = {
+  metadataBase: new URL("https://hasira.me"),
+  title: { absolute: "Kiro’s world | hasira" },
+  description: "Krystian, Kris, Kiro (hasira). Designer, developer, sometimes artist. A scrapbook of art, autumn, music and a little chaos.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "Kiro’s little corner of the internet",
+    description: "A very personal collection of things I love. Come hang out :3",
+    url: "/",
+    type: "website",
+    images: [{ url: "/scrapbook/hasira-personal-og.png", width: 1200, height: 630, alt: "Kiro’s world: a personal scrapbook of art, music and minerals" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [{ url: "/scrapbook/hasira-personal-og.png", alt: "Kiro’s world: a personal scrapbook of art, music and minerals" }],
+    title: "Kiro’s little corner of the internet",
+    description: "Art, autumn, music and a little chaos. Come hang out :3",
+  },
+};
 
-export default function Home() {
-  const { dict } = useLanguage();
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  viewportFit: "cover",
+  themeColor: "#2142c7",
+  colorScheme: "light",
+};
 
-  return (
-    <>
-      <HeroSection />
-      <SectionSeparator />
-      <section>
-        <div className="border-l-4 border-black dark:border-white mb-8 pl-4">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider mb-2">
-            {dict.home.experience.title}
-          </h2>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            {dict.home.experience.subtitle}
-          </p>
-        </div>
-        <ExperienceTimeline experiences={dict.experience.data} maxItems={3} />
-      </section>
-      <SectionSeparator />
-      <FeaturedProjectsSection />
-      {/* <SectionSeparator /> */}
-      {/* <HonorsAwardsSection /> */}
-      <SectionSeparator />
-      <ConnectSection />
-      <SectionSeparator />
-      <CTASection />
-    </>
-  );
+export default function PersonalPage() {
+  return <PersonalScrapbook />;
 }

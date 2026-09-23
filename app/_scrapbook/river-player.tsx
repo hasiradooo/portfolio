@@ -14,13 +14,31 @@ function YouTubeTrack({ onPlaying, playing }: TrackProps & { playing: boolean })
   const [attempt, setAttempt] = useState(0);
   const [status, setStatus] = useState("");
   const [error, setError] = useState(false);
+  const [position, setPosition] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [volume, setVolume] = useState(65);
+  const volumeRef = useRef(volume);
+  useEffect(() => {
+    if (!ready) return;
+    const sync = () => {
+      const player = controls.current;
+      if (!player) return;
+      const length = player.getDuration();
+      const current = player.getCurrentTime();
+      setDuration(Number.isFinite(length) ? length : 0);
+      setPosition(Number.isFinite(current) ? current : 0);
+    };
+    sync();
+    const timer = window.setInterval(sync, 500);
+    return () => window.clearInterval(timer);
+  }, [ready]);
   useEffect(() => {
     if (!attempt || !host.current) return;
     let cancelled = false;
     let player: YouTubePlayer | undefined;
     let readyTimer: number | undefined;
     const container = host.current;
-    setReady(false); setError(false); setStatus("Loading YouTube…"); onPlaying(false);
+    setReady(false); setError(false); setPosition(0); setDuration(0); setStatus("Loading the tape…"); onPlaying(false);
     const fail = () => {
       if (cancelled) return;
       window.clearTimeout(readyTimer);
@@ -32,15 +50,16 @@ function YouTubeTrack({ onPlaying, playing }: TrackProps & { playing: boolean })
       container.replaceChildren(mount);
       readyTimer = window.setTimeout(fail, 15_000);
       player = new api.Player(mount, {
-        width: "100%", height: "200", videoId: RIVER_PLAYER.youtubeId,
+        width: "200", height: "200", videoId: RIVER_PLAYER.youtubeId,
         host: "https://www.youtube-nocookie.com",
-        playerVars: { origin: window.location.origin, playsinline: 1, controls: 1, rel: 0 },
+        playerVars: { origin: window.location.origin, playsinline: 1, controls: 0, rel: 0, disablekb: 1 },
         events: {
           onReady: ({ target }) => {
             if (cancelled) return;
             window.clearTimeout(readyTimer);
             target.getIframe().title = "Eminem: River feat. Ed Sheeran, YouTube player";
-            setReady(true); setError(false); setStatus("Press play in the video if it doesn’t start.");
+            target.setVolume(volumeRef.current);
+            setReady(true); setError(false); setStatus("Press play on the tape if it doesn’t start.");
             target.playVideo();
           },
           onStateChange: ({ data }) => {
@@ -49,11 +68,13 @@ function YouTubeTrack({ onPlaying, playing }: TrackProps & { playing: boolean })
             setStatus(data === 1 ? "Playing on YouTube" : data === 2 ? "Paused" : data === 3 ? "Buffering…" : data === 0 ? "That was River. One more time?" : "Ready when you are.");
           },
           onError: fail,
-          onAutoplayBlocked: () => { if (!cancelled) { onPlaying(false); setStatus("Press play in the video to start."); } },
+          onAutoplayBlocked: () => { if (!cancelled) { onPlaying(false); setStatus("Press play on the tape to start."); } },
         },
       });
       controls.current = player;
       player.getIframe().setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+      player.getIframe().tabIndex = -1;
+      player.getIframe().setAttribute("aria-hidden", "true");
     }).catch(fail);
     return () => {
       cancelled = true; window.clearTimeout(readyTimer);
@@ -67,7 +88,14 @@ function YouTubeTrack({ onPlaying, playing }: TrackProps & { playing: boolean })
       <button type="button" disabled={!ready} onClick={() => controls.current?.seekTo(0, true)} aria-label="Rewind tape to the beginning"><Icon name="back" /> rewind</button>
       <span className={styles.transportLight} data-lit={playing} aria-hidden="true" />
     </div>}
-    {attempt > 0 && <div ref={host} className={styles.embed} data-youtube-host />}
+    {attempt > 0 && <>
+      <div className={styles.trackProgress}>
+        <label className={styles.seek}><span className={styles.srOnly}>Track position</span><input type="range" min="0" max={duration || 1} step="0.25" value={Math.min(position, duration || 1)} disabled={!ready || !duration} onChange={event => { const value = Number(event.target.value); controls.current?.seekTo(value, true); setPosition(value); }} /></label>
+        <span className={styles.time}>{time(position)} / {time(duration)}</span>
+      </div>
+      <label className={styles.volume}>volume<input type="range" min="0" max="100" value={volume} disabled={!ready} onChange={event => { const value = Number(event.target.value); volumeRef.current = value; setVolume(value); controls.current?.setVolume(value); }} /><span>{volume}%</span></label>
+      <div ref={host} className={styles.audioSource} data-youtube-host aria-hidden="true" />
+    </>}
     <p className={styles.status} role="status">{status || "No autoplay. Press play when you’re ready."}</p>
     {error && <div className={styles.errorActions}><button type="button" onClick={() => setAttempt(n => n + 1)}>try again</button><a href={`https://www.youtube.com/watch?v=${RIVER_PLAYER.youtubeId}`} target="_blank" rel="noopener noreferrer">open video <Icon name="arrow" /></a></div>}
   </>;

@@ -9,7 +9,7 @@ import { FloatingControls } from "./floating-controls";
 /** The personal scrapbook has its own navigation and full-width canvas. */
 export function SiteShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  if (pathname === "/personal" || pathname.startsWith("/personal/")) {
+  if (pathname === "/" || pathname === "/story" || pathname.startsWith("/story/")) {
     return <main className="flex-1 w-full">{children}</main>;
   }
   return (

@@ -15,7 +15,7 @@ function LanguageFlag({ country }: { country: "gb" | "pl" | "cz" }) {
     // Language names are already provided beside these decorative images.
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src={`/personal/flags/${country}.png`}
+      src={`/scrapbook/flags/${country}.png`}
       className={styles.languageFlag}
       alt=""
       width="160"
@@ -65,7 +65,7 @@ export default function PersonalScrapbook() {
   return (
     <div lang="en" className={`${styles.world} ${autumn ? styles.autumn : ""}`} data-motion={animated ? "on" : "off"} data-personal-page data-personal-palette={autumn ? "autumn" : "blue"}>
       <a href="#scrapbook" className={styles.skip}>Skip to my scrapbook</a>
-      <ScrapbookBar href="/personal/story" backLabel="Kiro’s notebook" address="home / kiro / index.html">
+      <ScrapbookBar href="/story" backLabel="Kiro’s notebook" address="home / kiro / index.html">
         <button type="button" onClick={() => setAnimated(!animated)} aria-pressed={animated}>
           <ScrapbookIcon name={animated ? "pause" : "play"} /> {animated ? "pause the GIF party" : "start the GIF party"}
         </button>
@@ -87,7 +87,7 @@ export default function PersonalScrapbook() {
             <span className={styles.biSticker}>proudly bi ♡</span>
           </div>
           <nav className={styles.jumpLinks} aria-label="Scrapbook sections">
-            <a href="#who">who’s this?</a><span>✶</span><a href="#good-stuff">the good stuff</a><span>✶</span><a href="#music">my noise</a><span>✶</span><a href="#games">my games</a><span>✶</span><Link href="/personal/story">Kiro’s story</Link>
+            <a href="#who">who’s this?</a><span>✶</span><a href="#good-stuff">the good stuff</a><span>✶</span><a href="#music">my noise</a><span>✶</span><a href="#games">my games</a><span>✶</span><Link href="/story">Kiro’s story</Link>
           </nav>
         </div>
 
@@ -108,7 +108,7 @@ export default function PersonalScrapbook() {
             <span className={styles.tape} aria-hidden="true" />
             {/* Native images deliberately keep the scrapbook independent of Next image host configuration. */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/personal/autumn.webp" width="800" height="552" alt="Sunlight falling through a quiet woodland" fetchPriority="high" />
+            <img src="/scrapbook/autumn.webp" width="800" height="552" alt="Sunlight falling through a quiet woodland" fetchPriority="high" />
             <figcaption>mentally, I’m here.<span>preferably in a cozy sweater</span></figcaption>
             <span className={styles.photoStar} aria-hidden="true">✷</span>
           </figure>
@@ -153,7 +153,7 @@ export default function PersonalScrapbook() {
             <RiverPlayer animated={animated} />
             <div className={styles.gifNote}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={animated ? "/personal/cat.gif" : "/personal/cat-still.png"} width="120" height="100" alt="A cat bobbing along" loading="lazy" />
+              <img src={animated ? "/scrapbook/cat.gif" : "/scrapbook/cat-still.png"} width="120" height="100" alt="A cat bobbing along" loading="lazy" />
               <p>me, listening to<br /><strong>“just one more song”</strong></p>
             </div>
           </div>
@@ -176,7 +176,7 @@ export default function PersonalScrapbook() {
             <figure className={`${styles.polaroid} ${styles.mineral}`} style={tilt("-4deg")}>
               <span className={styles.pin} aria-hidden="true" />
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/personal/mineral.webp" alt="A blue crystal specimen from my mineral collection" width="800" height="800" loading="lazy" />
+              <img src="/scrapbook/mineral.webp" alt="A blue crystal specimen from my mineral collection" width="800" height="800" loading="lazy" />
               <figcaption>ooh, pretty rock! ✧</figcaption>
               <p>I love collecting awesome-looking minerals. Nature really knows how to make art.</p>
               <span className={styles.mineralSparkle} aria-hidden="true">✧</span>
@@ -187,7 +187,7 @@ export default function PersonalScrapbook() {
               <span className={styles.smallLabel}>PLEASE DO NOT CHANGE THE CHANNEL</span>
               <figure className={styles.cartoonCover}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/personal/adventure-time.webp" alt="Adventure Time cover featuring Finn and Jake" width="680" height="600" loading="lazy" />
+                <img src="/scrapbook/adventure-time.webp" alt="Adventure Time cover featuring Finn and Jake" width="680" height="600" loading="lazy" />
                 <figcaption>Adventure Time ♡</figcaption>
               </figure>
               <h2 id="cartoons-title">cartoon time!</h2>
@@ -237,7 +237,7 @@ export default function PersonalScrapbook() {
         <section className={styles.storyInvite} aria-labelledby="story-invite-title">
           <span className={styles.tape} aria-hidden="true" />
           <div><span className={styles.smallLabel}>A DIFFERENT KIND OF LORE</span><h2 id="story-invite-title">there’s a story in here.</h2><p>Meet Kiro, Rin & Susie. Follow the chapters, get to know the characters, and stay a little longer.</p></div>
-          <Link href="/personal/story">open Kiro’s notebook <ScrapbookIcon name="arrow" /></Link>
+          <Link href="/story">open Kiro’s notebook <ScrapbookIcon name="arrow" /></Link>
           <span className={styles.storyScribble} aria-hidden="true">one page at a time ♡</span>
         </section>
 
@@ -248,7 +248,7 @@ export default function PersonalScrapbook() {
               <a className={`${styles.polaroid} ${styles.band}`} href={band.url} target="_blank" rel="noopener noreferrer" key={band.name} style={tilt(band.rotation)} aria-label={`${band.name} · official website (opens in a new tab)`}>
                 <span className={i % 2 === 0 ? styles.pin : styles.tape} aria-hidden="true" />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={`/personal/${band.image}.webp`} width="500" height="400" alt={band.name} loading="lazy" />
+                <img src={`/scrapbook/${band.image}.webp`} width="500" height="400" alt={band.name} loading="lazy" />
                 <h3>{band.name}</h3><p>{band.note}</p><span className={styles.bandNumber}>0{i + 1} <ScrapbookIcon name="arrow" /></span>
               </a>
             ))}
@@ -279,7 +279,7 @@ export default function PersonalScrapbook() {
         <footer className={styles.footer}>
           <div className={styles.badges}><span>MADE OF PIXELS & FEELINGS</span><span className={styles.biBadge}>BI & DOING MY THING</span><span>STILL WATER FAN CLUB</span><span>BEST VIEWED WITH A HOT CHOCOLATE</span></div>
           <p>you made it to the bottom! <span>stay a little weird.</span></p>
-          <div className={styles.footerLinks}><a href="https://t.me/hasiradooo" target="_blank" rel="noopener noreferrer">say hi @hasiradooo <ScrapbookIcon name="arrow" /></a><Link href="/personal/story">read Kiro’s story <ScrapbookIcon name="arrow" /></Link><button type="button" aria-pressed={autumn} onClick={() => setAutumn(!autumn)}>{autumn ? "✦ bring back the blue" : "🍂 make it autumn"}</button></div>
+          <div className={styles.footerLinks}><a href="https://t.me/hasiradooo" target="_blank" rel="noopener noreferrer">say hi @hasiradooo <ScrapbookIcon name="arrow" /></a><Link href="/story">read Kiro’s story <ScrapbookIcon name="arrow" /></Link><button type="button" aria-pressed={autumn} onClick={() => setAutumn(!autumn)}>{autumn ? "✦ bring back the blue" : "🍂 make it autumn"}</button></div>
           <small>Krystian / Kris / Kiro / hasira · an ongoing work in progress, just like me.</small>
         </footer>
       </div>
