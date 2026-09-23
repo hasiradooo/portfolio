@@ -10,6 +10,14 @@ import styles from "./personal.module.css";
 
 const tilt = (rotation: string) => ({ "--tilt": rotation } as CSSProperties);
 
+
+const extraGames = [
+  { "name": "The Binding of Isaac: Rebirth", "image": "/scrapbook/games/binding-of-isaac.webp", "url": "https://store.steampowered.com/app/250900/", "note": "stab mather with knife.", "rotation": "-3deg" },
+  { "name": "Cult of the Lamb", "image": "/scrapbook/games/cult-of-the-lamb.webp", "url": "https://store.steampowered.com/app/1313140/", "note": "cute little lamb. questionable hobbies.", "rotation": "3deg" },
+  { "name": "Helldivers 2", "image": "/scrapbook/games/helldivers-2.webp", "url": "https://store.steampowered.com/app/553850/", "note": "for democracy. and a little chaos.", "rotation": "-2deg" },
+  { "name": "The Witcher 3", "image": "/scrapbook/games/witcher-3.webp", "url": "https://store.steampowered.com/app/292030/", "note": "one more contract. maybe some gwent.", "rotation": "4deg" },
+] as const;
+
 function LanguageFlag({ country }: { country: "gb" | "pl" | "cz" }) {
   return (
     // Language names are already provided beside these decorative images.
@@ -134,18 +142,25 @@ export default function PersonalScrapbook() {
             <span className={styles.tape} aria-hidden="true" />
             <span className={styles.smallLabel}>THINGS THAT MAKE MY BRAIN GO</span>
             <h2>yes, please! <span>♡</span></h2>
-            <ul>
-              <li><span>01</span> art & all things creative</li>
-              <li><span>02</span> autumn. all of it.</li>
-              <li><span>03</span> hot chocolate & cozy sweaters</li>
-              <li><span>04</span> that warm, cozy atmosphere</li>
-              <li><span>05</span> blue, in every possible shade</li>
-              <li><span>06</span> still water. no bubbles, thanks.</li>
-              <li><span>07</span> cartoons & awesome-looking minerals</li>
-              <li><span>08</span> games, PC & tabletop!</li>
-              <li><span>09</span> plants. bring on the greenery!</li>
-              <li><span>10</span> spaghetti. any kind, honestly.</li>
-            </ul>
+            <div className={styles.cardScroll} tabIndex={0} role="region" aria-label="Things I love" data-card-scroll>
+              <ul>
+                <li><span>01</span> art & all things creative</li>
+                <li><span>02</span> autumn. all of it.</li>
+                <li><span>03</span> hot chocolate & cozy sweaters</li>
+                <li><span>04</span> that warm, cozy atmosphere</li>
+                <li><span>05</span> blue, in every possible shade</li>
+                <li><span>06</span> still water. no bubbles, thanks.</li>
+                <li><span>07</span> cartoons & awesome-looking minerals</li>
+                <li><span>08</span> games, PC & tabletop!</li>
+                <li><span>09</span> plants. bring on the greenery!</li>
+                <li><span>10</span> spaghetti. any kind, honestly.</li>
+                <li><span>11</span> people I can feel safe & silly with</li>
+                <li><span>12</span> little thoughtful gestures</li>
+                <li><span>13</span> comfortable silence & honest conversations</li>
+                <li><span>14</span> sharing our weird little obsessions</li>
+              </ul>
+            </div>
+            <p className={styles.scrollHint}>more little joys below <ScrapbookIcon name="down" /></p>
             <p className={styles.handNote}>a little cozy goes a long way</p>
           </section>
 
@@ -162,7 +177,20 @@ export default function PersonalScrapbook() {
             <span className={styles.pin} aria-hidden="true" />
             <span className={styles.smallLabel}>RESPECTFULLY…</span>
             <h2>nope.</h2>
-            <ul><li>Kids.<br /><span>Especially when they’re loud.</span></li><li>Loud noises in general.<br /><span>Let me have my peace.</span></li><li>Sparkling water.<br /><span>Why is my water fighting me?</span></li><li>Mean & intolerant people.<br /><span>A little kindness goes a long way.</span></li></ul>
+            <div className={styles.cardScroll} tabIndex={0} role="region" aria-label="Things I dislike" data-card-scroll>
+              <ul>
+                <li>Kids.<br /><span>Especially when they’re loud.</span></li>
+                <li>Loud noises in general.<br /><span>Let me have my peace.</span></li>
+                <li>Sparkling water.<br /><span>Why is my water fighting me?</span></li>
+                <li>Mean & intolerant people.<br /><span>A little kindness goes a long way.</span></li>
+                <li>“You’re too sensitive.”<br /><span>Having feelings isn’t a character flaw.</span></li>
+                <li>Mixed signals & guessing games.<br /><span>Please say what you mean. My brain already writes enough alternate endings.</span></li>
+                <li>Kindness being mistaken for permission.<br /><span>Being nice doesn’t mean everything is okay.</span></li>
+                <li>Being made to feel annoying for being excited.<br /><span>Let me tell you about the cool rock.</span></li>
+                <li>Pressure to open up.<br /><span>Some things take a little time.</span></li>
+              </ul>
+            </div>
+            <p className={styles.scrollHint}>a few more boundaries below <ScrapbookIcon name="down" /></p>
             <span className={styles.hatesDoodle} aria-hidden="true">×_×</span>
           </section>
         </div>
@@ -199,16 +227,28 @@ export default function PersonalScrapbook() {
               <span className={styles.pin} aria-hidden="true" />
               <span className={styles.smallLabel}>CHARACTER SHEET / THE PERSONAL BITS</span>
               <h2 id="lore-title">a little lore.</h2>
-              <p className={styles.pronouns}>he / him</p>
-              <p className={styles.single}>I’m single <span>&lt;/3</span></p>
-              <p className={styles.datingNote}>Sorry, guys. I’m looking for a girl right now. Nothing personal; I’m just tired of boys.</p>
-              <div className={styles.personality}><span>INFJ</span><span>2w1</span></div>
-              <dl className={styles.loreStats}>
-                <div><dt>height</dt><dd>180 cm <span>≈ 5′11″</span></dd></div>
-                <div><dt>weight</dt><dd>56 kg</dd></div>
-                <div><dt>favorite food</dt><dd>spaghetti <span>any kind! ♡</span></dd></div>
-              </dl>
-              <p className={styles.loreNote}>had daddy issues.</p>
+              <div className={`${styles.cardScroll} ${styles.loreScroll}`} tabIndex={0} role="region" aria-label="My personal lore" data-card-scroll>
+                <p className={styles.pronouns}>he / him</p>
+                <p className={styles.single}>I’m single <span>&lt;/3</span></p>
+                <p className={styles.datingNote}>Sorry, guys. I’m looking for a girl right now. Nothing personal; I’m just tired of boys.</p>
+                <div className={styles.personality}><span>INFJ</span><span>2w1</span></div>
+                <dl className={styles.loreStats}>
+                  <div><dt>height</dt><dd>180 cm <span>≈ 5′11″</span></dd></div>
+                  <div><dt>weight</dt><dd>56 kg</dd></div>
+                  <div><dt>favorite food</dt><dd>spaghetti <span>any kind! ♡</span></dd></div>
+                </dl>
+                <p className={styles.loreNote}>had daddy issues.</p>
+                <div className={styles.loreThoughts}>
+                  <p><strong>soft sweaters, loud thoughts.</strong></p>
+                  <p>Quiet until I feel safe. Then good luck shutting me up.</p>
+                  <p>Sometimes I worry I’m being annoying when I’m actually just enjoying your company.</p>
+                  <p>I say sorry a little too often. Occasionally for saying sorry.</p>
+                  <p>I care about tiny details. A remembered favorite, a little object, something that made you think of me.</p>
+                  <p>Sometimes “I’m fine” means I haven’t found the words yet.</p>
+                </div>
+                <p className={`${styles.loreNote} ${styles.deeperNote}`}>I like being close to people. Sometimes that comes with wondering when they’ll leave. I’m still figuring that part out.</p>
+              </div>
+              <p className={styles.scrollHint}>a little more lore below <ScrapbookIcon name="down" /></p>
               <span className={styles.loreDoodle} aria-hidden="true">♡ → &lt;/3</span>
             </section>
 
@@ -262,7 +302,7 @@ export default function PersonalScrapbook() {
             <p>a few of my favorites.<br />yes, all of Half-Life counts.</p>
           </div>
           <div className={styles.gameGrid}>
-            {favoriteGames.map((game, i) => (
+            {[...favoriteGames, ...extraGames].map((game, i) => (
               <a key={game.name} href={game.url} target="_blank" rel="noopener noreferrer" className={`${styles.polaroid} ${styles.gameCard}`} style={tilt(game.rotation)} aria-label={`${game.name}: official game page (opens in a new tab)`}>
                 <span className={i % 2 === 0 ? styles.pin : styles.tape} aria-hidden="true" />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -280,6 +320,11 @@ export default function PersonalScrapbook() {
           <div className={styles.badges}><span>MADE OF PIXELS & FEELINGS</span><span className={styles.biBadge}>BI & DOING MY THING</span><span>STILL WATER FAN CLUB</span><span>BEST VIEWED WITH A HOT CHOCOLATE</span></div>
           <p>you made it to the bottom! <span>stay a little weird.</span></p>
           <div className={styles.footerLinks}><a href="https://t.me/hasiradooo" target="_blank" rel="noopener noreferrer">say hi @hasiradooo <ScrapbookIcon name="arrow" /></a><Link href="/story">read Kiro’s story <ScrapbookIcon name="arrow" /></Link><button type="button" aria-pressed={autumn} onClick={() => setAutumn(!autumn)}>{autumn ? "✦ bring back the blue" : "🍂 make it autumn"}</button></div>
+          <a className={styles.hotChocolate} href="https://ko-fi.com/hasiradooo" target="_blank" rel="noopener noreferrer" aria-label="Buy me a hot chocolate on Ko-fi (opens in a new tab)">
+            <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M6 12h17v9a7 7 0 0 1-7 7h-3a7 7 0 0 1-7-7zM23 14h2a4 4 0 0 1 0 8h-2M4 28h22M10 8c-3-3 3-3 0-6M16 8c-3-3 3-3 0-6" /><path d="M11 18c0-3 4-3 4 0 0-3 4-3 4 0 0 2-4 5-4 5s-4-3-4-5" fill="currentColor" stroke="none" /></svg>
+            <span>buy me a hot chocolate<small>a little warmth via Ko-fi ♡</small></span>
+            <ScrapbookIcon name="arrow" />
+          </a>
           <small>Krystian / Kris / Kiro / hasira · an ongoing work in progress, just like me.</small>
         </footer>
       </div>
