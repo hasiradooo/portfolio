@@ -15,7 +15,7 @@ const extraGames = [
   { "name": "The Binding of Isaac: Rebirth", "image": "/scrapbook/games/binding-of-isaac.webp", "url": "https://store.steampowered.com/app/250900/", "note": "stab mather with knife.", "rotation": "-3deg" },
   { "name": "Cult of the Lamb", "image": "/scrapbook/games/cult-of-the-lamb.webp", "url": "https://store.steampowered.com/app/1313140/", "note": "cute little lamb. questionable hobbies.", "rotation": "3deg" },
   { "name": "Helldivers 2", "image": "/scrapbook/games/helldivers-2.webp", "url": "https://store.steampowered.com/app/553850/", "note": "for democracy. and a little chaos.", "rotation": "-2deg" },
-  { "name": "The Witcher 3", "image": "/scrapbook/games/witcher-3.webp", "url": "https://store.steampowered.com/app/292030/", "note": "one more contract. maybe some gwent.", "rotation": "4deg" },
+  { "name": "The Witcher 3", "image": "/scrapbook/games/witcher-3.webp", "url": "https://store.steampowered.com/app/292030/", "note": "one more contract. maybe some gwent. Ciri can wait.", "rotation": "4deg" },
 ] as const;
 
 function LanguageFlag({ country }: { country: "gb" | "pl" | "cz" }) {
