@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Kalam";
-  src: url("/personal/kalam-latin-400.woff2") format("woff2");
+  src: url("/scrapbook/kalam-latin-400.woff2") format("woff2");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -195,10 +195,13 @@
 }
 
 .jumpLinks a {
+  flex: 0 0 auto;
+  white-space: nowrap;
   text-underline-offset: 5px;
 }
 
 .jumpLinks>span {
+  flex: 0 0 auto;
   color: #efff86;
 }
 
@@ -1075,6 +1078,15 @@
 }
 
 @media (max-width: 760px) {
+  .jumpLinks {
+    justify-content: flex-start;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+    scrollbar-color: #efff8699 transparent;
+    padding: 8px 4px 12px;
+  }
+
   .extraBoard {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 35px 25px;
@@ -1115,7 +1127,7 @@
   }
 
   .hero {
-    padding-top: 65px;
+    padding-top: 115px;
     padding-bottom: 45px;
   }
 
@@ -1139,8 +1151,8 @@
   }
 
   .stickerCluster {
-    right: -15px;
-    top: -8px;
+    right: 0;
+    top: 22px;
     transform: rotate(12deg) scale(.62);
     transform-origin: top right;
   }
@@ -1221,7 +1233,7 @@
   
 
   .hero {
-    padding-top: 68px;
+    padding-top: 115px;
   }
 
   .hero h1 {
@@ -1234,8 +1246,8 @@
   }
 
   .jumpLinks {
-    gap: 9px;
-    font-size: 10px;
+    gap: 14px;
+    font-size: 11px;
   }
 
   .board {

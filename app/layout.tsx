@@ -33,7 +33,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   /* URL helpers -------------------------------------------------- */
-  metadataBase: new URL('https://portfolio.rabbittale.co'),
+  metadataBase: new URL('https://hasira.me'),
   alternates: { canonical: '/' },
 
   /* Essential tags ---------------------------------------------- */

@@ -20,7 +20,7 @@ export default function Footer() {
   ];
 
   const navigationLinks = [
-    { label: dict.common.nav.personal, href: "/personal" },
+    { label: dict.common.nav.personal, href: "/" },
     { label: dict.footer.navigationLinks.home, href: "/" },
     { label: dict.footer.navigationLinks.about, href: "/about" },
     { label: dict.footer.navigationLinks.projects, href: "/projects" },

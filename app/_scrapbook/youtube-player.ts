@@ -2,6 +2,9 @@ export type YouTubePlayer = {
   playVideo(): void;
   pauseVideo(): void;
   seekTo(seconds: number, allowSeekAhead: boolean): void;
+  getCurrentTime(): number;
+  getDuration(): number;
+  setVolume(volume: number): void;
   destroy(): void;
   getIframe(): HTMLIFrameElement;
 };
@@ -9,7 +12,7 @@ type PlayerEvent = { target: YouTubePlayer };
 export type YouTubeAPI = {
   Player: new (element: HTMLElement, options: {
     width: string; height: string; videoId: string; host: string;
-    playerVars: { origin: string; playsinline: number; controls: number; rel: number };
+    playerVars: { origin: string; playsinline: number; controls: number; rel: number; disablekb: number };
     events: { onReady(event: PlayerEvent): void; onStateChange(event: PlayerEvent & { data: number }): void; onError(event: PlayerEvent & { data: number }): void; onAutoplayBlocked(): void };
   }) => YouTubePlayer;
 };

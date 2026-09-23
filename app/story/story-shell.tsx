@@ -2,9 +2,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import ScrapbookBar from "../scrapbook-bar";
-import Icon from "../scrapbook-icon";
-import personal from "../personal.module.css";
+import ScrapbookBar from "@/app/_scrapbook/scrapbook-bar";
+import Icon from "@/app/_scrapbook/scrapbook-icon";
+import personal from "@/app/_scrapbook/personal.module.css";
 import styles from "./story.module.css";
 
 type Chapter = { number: number; slug: string; title: string };
@@ -12,7 +12,7 @@ export default function StoryShell({ chapters, children }: { chapters: Chapter[]
   const pathname = usePathname();
   const [autumn, setAutumn] = useState(false);
   const menu = useRef<HTMLDetailsElement>(null);
-  const active = chapters.find(c => pathname === `/personal/story/${c.slug}`);
+  const active = chapters.find(c => pathname === `/story/${c.slug}`);
   useEffect(() => {
     if (menu.current) menu.current.open = window.matchMedia("(min-width: 901px)").matches;
     const selected = menu.current?.querySelector<HTMLElement>('[aria-current="page"]');
@@ -41,18 +41,18 @@ export default function StoryShell({ chapters, children }: { chapters: Chapter[]
       </ScrapbookBar>
       <div className={styles.layout}>
         <aside className={styles.sidebar} aria-label="Story navigation">
-          <Link href="/personal/story" className={styles.notebookTitle}>kiro’s<br /><span>notebook.</span><i aria-hidden="true">✶</i></Link>
+          <Link href="/story" className={styles.notebookTitle}>kiro’s<br /><span>notebook.</span><i aria-hidden="true">✶</i></Link>
           <p className={styles.sideNote}>a few lives, tangled together.</p>
           <details ref={menu} className={styles.contents} open>
             <summary>Chapters & characters <span>{active ? `${String(active.number).padStart(2, "0")} / ${chapters.length}` : "open"}</span></summary>
             <nav className={styles.nav} aria-label="Chapters and characters">
               <div className={styles.navIntro}>
-                <Link href="/personal/story" aria-current={pathname === "/personal/story" ? "page" : undefined}>the beginning / about</Link>
-                <Link href="/personal/story/characters" aria-current={pathname === "/personal/story/characters" ? "page" : undefined}>meet the characters <span>♡</span></Link>
+                <Link href="/story" aria-current={pathname === "/story" ? "page" : undefined}>the beginning / about</Link>
+                <Link href="/story/characters" aria-current={pathname === "/story/characters" ? "page" : undefined}>meet the characters <span>♡</span></Link>
               </div>
               <p className={styles.navLabel}>THE CHAPTERS / {chapters.length} PAGES TO GET LOST IN</p>
               <ol className={styles.chapterList} data-chapter-list>
-                {chapters.map(chapter => <li key={chapter.slug}><Link prefetch={false} href={`/personal/story/${chapter.slug}`} aria-current={active?.slug === chapter.slug ? "page" : undefined}><span>{String(chapter.number).padStart(2, "0")}</span>{chapter.title}</Link></li>)}
+                {chapters.map(chapter => <li key={chapter.slug}><Link prefetch={false} href={`/story/${chapter.slug}`} aria-current={active?.slug === chapter.slug ? "page" : undefined}><span>{String(chapter.number).padStart(2, "0")}</span>{chapter.title}</Link></li>)}
               </ol>
             </nav>
           </details>
