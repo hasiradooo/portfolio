@@ -10,7 +10,7 @@ export function personalAge(now = new Date()): number {
 }
 
 // Set this to a local public/ asset path when the fursona artwork is available.
-export const FURSONA_IMAGE: string | null = null;
+export const FURSONA_IMAGE: string | null = "/story/characters/kiro.png";
 
 // Replace the photo and set isExample to false when adding your own collection.
 export const MINERAL_PHOTO = {
