@@ -1,43 +1,43 @@
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
-import { Locale } from "@/translations/i18n"
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+import { Locale } from "@/translations/i18n";
 
 // Define ProjectStatus enum directly since we no longer import from data.ts
 enum ProjectStatus {
-  InDevelopment = "InDevelopment",
-  Completed = "Completed",
-  Archived = "Archived",
-  Concept = "Concept",
-  OnHold = "OnHold"
+	InDevelopment = "InDevelopment",
+	Completed = "Completed",
+	Archived = "Archived",
+	Concept = "Concept",
+	OnHold = "OnHold",
 }
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+	return twMerge(clsx(inputs));
 }
 
 // Map project status to badge variant
 export const getStatusVariant = (status: ProjectStatus | string) => {
-  switch (status.toLowerCase()) {
-    case ProjectStatus.Completed.toLowerCase():
-      return "stable";
-    case ProjectStatus.InDevelopment.toLowerCase():
-      return "development";
-    case ProjectStatus.Concept.toLowerCase():
-      return "concept";
-    case ProjectStatus.Archived.toLowerCase():
-      return "archived";
-    case ProjectStatus.OnHold.toLowerCase():
-      return "beta";
-    case "stable":
-    case "released":
-      return "stable";
-    case "beta":
-      return "beta";
-    case "alpha":
-      return "alpha";
-    default:
-      return "secondary";
-  }
+	switch (status.toLowerCase()) {
+		case ProjectStatus.Completed.toLowerCase():
+			return "stable";
+		case ProjectStatus.InDevelopment.toLowerCase():
+			return "development";
+		case ProjectStatus.Concept.toLowerCase():
+			return "concept";
+		case ProjectStatus.Archived.toLowerCase():
+			return "archived";
+		case ProjectStatus.OnHold.toLowerCase():
+			return "beta";
+		case "stable":
+		case "released":
+			return "stable";
+		case "beta":
+			return "beta";
+		case "alpha":
+			return "alpha";
+		default:
+			return "secondary";
+	}
 };
 
 /**
@@ -46,18 +46,18 @@ export const getStatusVariant = (status: ProjectStatus | string) => {
  * @returns Current age as number
  */
 export function calculateAge(birthDate: Date | string): number {
-  const birth = typeof birthDate === 'string' ? new Date(birthDate) : birthDate;
-  const now = new Date();
+	const birth = typeof birthDate === "string" ? new Date(birthDate) : birthDate;
+	const now = new Date();
 
-  let age = now.getFullYear() - birth.getFullYear();
-  const monthDiff = now.getMonth() - birth.getMonth();
-  const dayDiff = now.getDate() - birth.getDate();
+	let age = now.getFullYear() - birth.getFullYear();
+	const monthDiff = now.getMonth() - birth.getMonth();
+	const dayDiff = now.getDate() - birth.getDate();
 
-  if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
-    age--;
-  }
+	if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+		age--;
+	}
 
-  return age;
+	return age;
 }
 
 /**
@@ -66,8 +66,8 @@ export function calculateAge(birthDate: Date | string): number {
  * @returns Years of experience as number
  */
 export function calculateExperience(startYear: number): number {
-  const currentYear = new Date().getFullYear();
-  return currentYear - startYear;
+	const currentYear = new Date().getFullYear();
+	return currentYear - startYear;
 }
 
 /**
@@ -76,30 +76,30 @@ export function calculateExperience(startYear: number): number {
  * @returns Date object
  */
 export function parseDate(dateStr: string): Date {
-  // Handle year-only format
-  if (/^\d{4}$/.test(dateStr)) {
-    return new Date(`${dateStr}-01-01`);
-  }
+	// Handle year-only format
+	if (/^\d{4}$/.test(dateStr)) {
+		return new Date(`${dateStr}-01-01`);
+	}
 
-  // Handle DD.MM.YYYY format (European)
-  if (/^\d{1,2}\.\d{1,2}\.\d{4}$/.test(dateStr)) {
-    const [day, month, year] = dateStr.split('.').map(Number);
-    return new Date(year, month - 1, day);
-  }
+	// Handle DD.MM.YYYY format (European)
+	if (/^\d{1,2}\.\d{1,2}\.\d{4}$/.test(dateStr)) {
+		const [day, month, year] = dateStr.split(".").map(Number);
+		return new Date(year, month - 1, day);
+	}
 
-  // Handle DD/MM/YYYY format (European with slashes)
-  if (/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateStr)) {
-    const [day, month, year] = dateStr.split('/').map(Number);
-    return new Date(year, month - 1, day);
-  }
+	// Handle DD/MM/YYYY format (European with slashes)
+	if (/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateStr)) {
+		const [day, month, year] = dateStr.split("/").map(Number);
+		return new Date(year, month - 1, day);
+	}
 
-  // Handle MM/DD/YYYY format (US)
-  if (/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateStr)) {
-    return new Date(dateStr);
-  }
+	// Handle MM/DD/YYYY format (US)
+	if (/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateStr)) {
+		return new Date(dateStr);
+	}
 
-  // Default fallback
-  return new Date(dateStr);
+	// Default fallback
+	return new Date(dateStr);
 }
 
 /**
@@ -109,26 +109,33 @@ export function parseDate(dateStr: string): Date {
  * @param format Format type (short, medium, long)
  * @returns Formatted date string
  */
-export function formatDate(date: Date | string, locale: Locale, format: 'short' | 'medium' | 'long' = 'medium'): string {
-  const dateObj = typeof date === 'string' ? parseDate(date) : date;
+export function formatDate(
+	date: Date | string,
+	locale: Locale,
+	format: "short" | "medium" | "long" = "medium",
+): string {
+	const dateObj = typeof date === "string" ? parseDate(date) : date;
 
-  // Handle "present" special case
-  if (typeof date === 'string' && date.toLowerCase() === 'present') {
-    return locale === 'en' ? 'Present' : 'Obecnie';
-  }
+	// Handle "present" special case
+	if (typeof date === "string" && date.toLowerCase() === "present") {
+		return locale === "en" ? "Present" : "Obecnie";
+	}
 
-  const options: Intl.DateTimeFormatOptions = {
-    year: 'numeric',
-  };
+	const options: Intl.DateTimeFormatOptions = {
+		year: "numeric",
+	};
 
-  if (format === 'medium' || format === 'long') {
-    options.month = format === 'medium' ? 'short' : 'long';
-  }
+	if (format === "medium" || format === "long") {
+		options.month = format === "medium" ? "short" : "long";
+	}
 
-  if (format === 'short') {
-    options.month = '2-digit';
-    options.day = '2-digit';
-  }
+	if (format === "short") {
+		options.month = "2-digit";
+		options.day = "2-digit";
+	}
 
-  return new Intl.DateTimeFormat(locale === 'en' ? 'en-US' : 'pl-PL', options).format(dateObj);
+	return new Intl.DateTimeFormat(
+		locale === "en" ? "en-US" : "pl-PL",
+		options,
+	).format(dateObj);
 }

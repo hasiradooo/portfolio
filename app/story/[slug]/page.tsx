@@ -1,3 +1,5 @@
+import ChapterCassette from "../chapter-cassette";
+import { chapterTrack, youtubeIdFromUrl } from "../chapter-music";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Icon from "@/app/_scrapbook/scrapbook-icon";
@@ -19,6 +21,8 @@ export default async function ChapterPage({ params }: Props) {
   const index = chapters.findIndex(c => c.slug === slug);
   if (index === -1) notFound();
   const chapter = chapters[index], previous = chapters[index - 1], next = chapters[index + 1];
+  const music = chapterTrack(slug);
+  const hasInlineMusic = chapter.paragraphs.some(p => typeof p !== "string" && p.runs.some(r => "href" in r && typeof r.href === "string" && youtubeIdFromUrl(r.href)));
   return <>
     <article className={styles.sheet}>
       <span className={styles.tape} aria-hidden="true" />
@@ -27,7 +31,8 @@ export default async function ChapterPage({ params }: Props) {
         <h1>{chapter.title}</h1>
         <p className={styles.readingTime}>by hasira · about {chapter.minutes} min read</p>
       </header>
-      <div className={styles.prose}><StoryParagraphs paragraphs={chapter.paragraphs} /></div>
+      {!hasInlineMusic && <ChapterCassette key={slug} track={music} chapterTitle={chapter.title} number={chapter.number} />}
+      <div className={styles.prose}><StoryParagraphs paragraphs={chapter.paragraphs} music={music} /></div>
       <div className={styles.chapterEnd}>✶<span>end of chapter {chapter.number}</span>✶</div>
     </article>
     <nav className={styles.pageTurns} aria-label="Previous and next chapter">

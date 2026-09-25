@@ -1,39 +1,40 @@
-import { Resend } from 'resend';
-import { NextResponse } from 'next/server';
-import { z } from 'zod/v4';
-import { verifyRecaptchaToken } from '@/lib/recaptcha';
+import { Resend } from "resend";
+import { NextResponse } from "next/server";
+import { z } from "zod/v4";
+import { verifyRecaptchaToken } from "@/lib/recaptcha";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const contactFormSchema = z.object({
-  name: z.string().min(2),
-  email: z.email(),
-  message: z.string().min(10),
-  recaptchaToken: z.string()
+	name: z.string().min(2),
+	email: z.email(),
+	message: z.string().min(10),
+	recaptchaToken: z.string(),
 });
 
 export async function POST(request: Request) {
-  try {
-    const body = await request.json();
-    const { name, email, message, recaptchaToken } = contactFormSchema.parse(body);
+	try {
+		const body = await request.json();
+		const { name, email, message, recaptchaToken } =
+			contactFormSchema.parse(body);
 
-    // Verify reCAPTCHA token
-    const isValidToken = await verifyRecaptchaToken(recaptchaToken);
-    if (!isValidToken) {
-      return NextResponse.json(
-        { error: 'Invalid reCAPTCHA token' },
-        { status: 400 }
-      );
-    }
+		// Verify reCAPTCHA token
+		const isValidToken = await verifyRecaptchaToken(recaptchaToken);
+		if (!isValidToken) {
+			return NextResponse.json(
+				{ error: "Invalid reCAPTCHA token" },
+				{ status: 400 },
+			);
+		}
 
-    // Send email
-    await resend.emails.send({
-      from: `${name} <${email}>`,
-      to: 'kris@rabbittale.co',
-      replyTo: email,
-      subject: "Portfolio Contact Form Message",
-      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
-      html: `
+		// Send email
+		await resend.emails.send({
+			from: `${name} <${email}>`,
+			to: "kris@rabbittale.co",
+			replyTo: email,
+			subject: "Portfolio Contact Form Message",
+			text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+			html: `
         <!DOCTYPE html>
         <html>
           <head>
@@ -117,15 +118,15 @@ export async function POST(request: Request) {
             </div>
           </body>
         </html>
-      `
-    });
+      `,
+		});
 
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error('Contact form error:', error);
-    return NextResponse.json(
-      { error: 'Failed to send message' },
-      { status: 500 }
-    );
-  }
+		return NextResponse.json({ success: true });
+	} catch (error) {
+		console.error("Contact form error:", error);
+		return NextResponse.json(
+			{ error: "Failed to send message" },
+			{ status: 500 },
+		);
+	}
 }

@@ -3,6 +3,6 @@
  * the YouTube source controlled by the cassette's custom transport.
  */
 export const RIVER_PLAYER: { youtubeId: string; audioSrc: string | null } = {
-  youtubeId: "3BXDsVD6O10",
-  audioSrc: null,
+	youtubeId: "3BXDsVD6O10",
+	audioSrc: null,
 };

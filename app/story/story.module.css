@@ -73,7 +73,7 @@
 .characterHeading > p:last-child { font:22px "Kalam",cursive; }
 .characterTabs { display:flex; gap:15px; margin:22px 0 35px; }
 .characterTabs a { background:#ffd2e6; padding:8px 21px; color:#172048; text-decoration:none; font:21px "Kalam",cursive; transform:rotate(-3deg); box-shadow:3px 4px 0 #10236044; }
-.characterTabs a:nth-child(2) { transform:rotate(3deg); background:#f4ffa2; }
+.characterTabs a:nth-child(even) { transform:rotate(3deg); }
 .characterProfiles { display:grid; gap:36px; }
 .characterProfile { background:#fffdf0; padding:30px; box-shadow:8px 8px 0 #10236044; }
 .profileTop { display:grid; grid-template-columns:190px minmax(0,1fr); gap:34px; align-items:center; }
@@ -109,3 +109,37 @@
 .storyLinkButton:hover { background:#172e96; }
 .visuallyHidden { position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 @media(max-width:520px) { .storyNote { padding:19px 16px; } .storyLinkButton { font-size:17px; } }
+
+/* Preserve both marks when global typography normalizes nested emphasis. */
+.prose em strong, .prose strong em { font-style:italic; font-weight:700; }
+
+.castNote { color:#fffdf0; max-width:660px; margin:0 0 24px; font:14px/1.6 "Trebuchet MS",sans-serif; }
+.appearances { display:flex; flex-wrap:wrap; gap:9px; padding-top:22px; margin-top:20px; border-top:1px dashed #17204844; }
+.appearances > span { width:100%; font:10px/1.5 "Courier New",monospace; letter-spacing:1px; }
+.appearances a { padding:6px 9px; background:#eeeacc; color:#172048; font:12px/1.5 "Courier New",monospace; text-decoration:none; }
+.appearances a:hover { background:#e2e9a8; }
+.characterTabs { flex-wrap:wrap; }
+.profileTop > div:last-child { min-width:0; }
+.profileTop h2 { overflow-wrap:anywhere; }
+.portraitFrame { display:block; overflow:hidden; background:#fff!important; }
+.portraitImage { display:block; width:100%; height:100%; object-fit:cover; object-position:right center; }
+
+/* Give navigation the remaining viewport space, keeping the credit outside it. */
+@media(min-width:901px) {
+  .sidebar { display:grid; grid-template-rows:auto auto minmax(0,1fr) auto; height:calc(100svh - 160px); }
+  .contents { min-height:0; overflow-y:auto; overscroll-behavior:contain; scrollbar-width:thin; scrollbar-color:#aebef1 transparent; }
+  .chapterList { max-height:none; min-height:0; overflow:visible; padding-right:5px; }
+  .world .sidebarFooter { margin:14px 0 0; padding-top:8px; border-top:1px dashed #fffdf055; }
+}
+.castSection { margin:0 0 48px; }
+.castSectionHeading { color:#fffdf0; }
+.castSectionHeading h2 { font:32px/1.3 "Kalam",cursive; margin:0 0 6px; }
+.castSectionHeading p { font:14px/1.6 "Trebuchet MS",sans-serif; }
+.characterProfile { scroll-margin-top:24px; }
+.content > .actions > a:not(.primary) { color:#fffdf0; }
+@media(max-width:900px) {
+  .world .sidebarFooter { display:block; position:fixed; z-index:20; bottom:calc(8px + env(safe-area-inset-bottom,0px)); left:50%; transform:translateX(-50%); margin:0; padding:5px 12px; border:1px solid #fffdf055; border-radius:5px; background:var(--blue); color:#fffdf0; white-space:nowrap; pointer-events:none; }
+  .sidebarFooter br, .sidebarFooter span { display:none; }
+  .footer { padding-bottom:calc(65px + env(safe-area-inset-bottom,0px)); }
+}
+@media print { .world .sidebarFooter { display:none; } }

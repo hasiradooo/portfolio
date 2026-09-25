@@ -6,8 +6,11 @@ import { RIVER_PLAYER } from "./river-player-config";
 import { loadYouTube, type YouTubePlayer } from "./youtube-player";
 import styles from "./river-player.module.css";
 
+export type TapeTrack = { title: string; artist: string; youtubeId?: string; audioSrc?: string | null };
+const DEFAULT_TRACK: TapeTrack = { title: "River", artist: "Eminem feat. Ed Sheeran", ...RIVER_PLAYER };
+
 type TrackProps = { onPlaying: (playing: boolean) => void };
-function YouTubeTrack({ onPlaying, playing }: TrackProps & { playing: boolean }) {
+function YouTubeTrack({ onPlaying, playing, track, initialVolume = 65 }: TrackProps & { playing: boolean; track: TapeTrack & { youtubeId: string }; initialVolume?: number }) {
   const host = useRef<HTMLDivElement>(null);
   const controls = useRef<YouTubePlayer | null>(null);
   const [ready, setReady] = useState(false);
@@ -16,8 +19,13 @@ function YouTubeTrack({ onPlaying, playing }: TrackProps & { playing: boolean })
   const [error, setError] = useState(false);
   const [position, setPosition] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [volume, setVolume] = useState(65);
+  const [volume, setVolume] = useState(initialVolume);
   const volumeRef = useRef(volume);
+  useEffect(() => {
+    const stop = () => { try { controls.current?.pauseVideo(); } catch {} onPlaying(false); };
+    window.addEventListener("pagehide", stop);
+    return () => window.removeEventListener("pagehide", stop);
+  }, [onPlaying]);
   useEffect(() => {
     if (!ready) return;
     const sync = () => {
@@ -50,14 +58,14 @@ function YouTubeTrack({ onPlaying, playing }: TrackProps & { playing: boolean })
       container.replaceChildren(mount);
       readyTimer = window.setTimeout(fail, 15_000);
       player = new api.Player(mount, {
-        width: "200", height: "200", videoId: RIVER_PLAYER.youtubeId,
+        width: "200", height: "200", videoId: track.youtubeId,
         host: "https://www.youtube-nocookie.com",
         playerVars: { origin: window.location.origin, playsinline: 1, controls: 0, rel: 0, disablekb: 1 },
         events: {
           onReady: ({ target }) => {
             if (cancelled) return;
             window.clearTimeout(readyTimer);
-            target.getIframe().title = "Eminem: River feat. Ed Sheeran, YouTube player";
+            target.getIframe().title = `${track.artist}: ${track.title}, YouTube player`;
             target.setVolume(volumeRef.current);
             setReady(true); setError(false); setStatus("Press play on the tape if it doesn’t start.");
             target.playVideo();
@@ -65,7 +73,7 @@ function YouTubeTrack({ onPlaying, playing }: TrackProps & { playing: boolean })
           onStateChange: ({ data }) => {
             if (cancelled) return;
             onPlaying(data === 1);
-            setStatus(data === 1 ? "Playing on YouTube" : data === 2 ? "Paused" : data === 3 ? "Buffering…" : data === 0 ? "That was River. One more time?" : "Ready when you are.");
+            setStatus(data === 1 ? "Playing on YouTube" : data === 2 ? "Paused" : data === 3 ? "Buffering…" : data === 0 ? "End of the tape. One more time?" : "Ready when you are.");
           },
           onError: fail,
           onAutoplayBlocked: () => { if (!cancelled) { onPlaying(false); setStatus("Press play on the tape to start."); } },
@@ -78,9 +86,11 @@ function YouTubeTrack({ onPlaying, playing }: TrackProps & { playing: boolean })
     }).catch(fail);
     return () => {
       cancelled = true; window.clearTimeout(readyTimer);
-      controls.current = null; player?.destroy(); container.replaceChildren();
+      controls.current = null;
+      if (player) { try { player.setVolume(0); player.pauseVideo(); } catch {} try { player.destroy(); } catch {} }
+      container.replaceChildren();
     };
-  }, [attempt, onPlaying]);
+  }, [attempt, onPlaying, track.youtubeId, track.title, track.artist]);
   return <>
     {attempt === 0 && <button type="button" className={styles.loadButton} onClick={() => setAttempt(1)}><Icon name="play" /> play this tape</button>}
     {attempt > 0 && <div className={styles.transport}>
@@ -97,12 +107,12 @@ function YouTubeTrack({ onPlaying, playing }: TrackProps & { playing: boolean })
       <div ref={host} className={styles.audioSource} data-youtube-host aria-hidden="true" />
     </>}
     <p className={styles.status} role="status">{status || "No autoplay. Press play when you’re ready."}</p>
-    {error && <div className={styles.errorActions}><button type="button" onClick={() => setAttempt(n => n + 1)}>try again</button><a href={`https://www.youtube.com/watch?v=${RIVER_PLAYER.youtubeId}`} target="_blank" rel="noopener noreferrer">open video <Icon name="arrow" /></a></div>}
+    {error && <div className={styles.errorActions}><button type="button" onClick={() => setAttempt(n => n + 1)}>try again</button><a href={`https://www.youtube.com/watch?v=${track.youtubeId}`} target="_blank" rel="noopener noreferrer">open video <Icon name="arrow" /></a></div>}
   </>;
 }
 
 const time = (seconds: number) => `${Math.floor(seconds / 60)}:${String(Math.floor(seconds % 60)).padStart(2, "0")}`;
-function AudioTrack({ src, analyser, onPlaying }: TrackProps & { src: string; analyser: RefObject<AnalyserNode | null> }) {
+function AudioTrack({ src, analyser, onPlaying, title }: TrackProps & { src: string; title: string; analyser: RefObject<AnalyserNode | null> }) {
   const audio = useRef<HTMLAudioElement>(null);
   const graph = useRef<{ context: AudioContext; source: MediaElementAudioSourceNode; gain: GainNode } | null>(null);
   const [playing, setPlaying] = useState(false);
@@ -151,12 +161,12 @@ function AudioTrack({ src, analyser, onPlaying }: TrackProps & { src: string; an
       onWaiting={() => { setWaiting(true); report(false); }}
       onError={() => { setWaiting(false); report(false); setError("This audio file is unavailable."); }} />
     <div className={styles.audioControls}>
-      <button type="button" onClick={() => void toggle()} aria-label={playing ? "Pause River" : "Play River"}><Icon name={playing ? "pause" : "play"} /></button>
+      <button type="button" onClick={() => void toggle()} aria-label={playing ? `Pause ${title}` : `Play ${title}`}><Icon name={playing ? "pause" : "play"} /></button>
       <label className={styles.seek}><span className={styles.srOnly}>Track position</span><input type="range" min="0" max={duration || 1} step="0.25" value={Math.min(position, duration || 1)} disabled={!duration} onChange={event => { const value = Number(event.target.value); if (audio.current) audio.current.currentTime = value; setPosition(value); }} /></label>
       <span className={styles.time}>{time(position)} / {time(duration)}</span>
     </div>
     <label className={styles.volume}>volume<input type="range" min="0" max="100" value={volume} onChange={event => { const value = Number(event.target.value); setVolume(value); if (graph.current) graph.current.gain.gain.setTargetAtTime(value / 100, graph.current.context.currentTime, .02); }} /><span>{volume}%</span></label>
-    <p className={styles.status} role="status">{error || (waiting ? "Buffering…" : playing ? "Playing River" : "Ready when you are.")}</p>
+    <p className={styles.status} role="status">{error || (waiting ? "Buffering…" : playing ? `Playing ${title}` : "Ready when you are.")}</p>
   </>;
 }
 
@@ -170,16 +180,17 @@ function TapeReel() {
   </span>;
 }
 
-export default function RiverPlayer({ animated }: { animated: boolean }) {
+export default function RiverPlayer({ animated, track = DEFAULT_TRACK, heading = "KIRO’S TAPE DECK", footnote = "if I had to pick just one…", chapter = false, onPlaybackChange }: { animated: boolean; onPlaybackChange?: (playing: boolean) => void; track?: TapeTrack; heading?: string; footnote?: string; chapter?: boolean }) {
   const [playing, setPlaying] = useState(false);
   const analyser = useRef<AnalyserNode | null>(null);
-  return <aside className={styles.deck} aria-label="Favorite song player" data-cassette-player data-running={playing && animated}>
-    <div className={styles.deckHeader}><span>KIRO’S TAPE DECK</span><span>STEREO / 01</span></div>
+  useEffect(() => { onPlaybackChange?.(playing); }, [playing, onPlaybackChange]);
+  return <aside className={styles.deck} aria-label={chapter ? `Chapter cassette: ${track.title}` : "Favorite song player"} data-cassette-player data-running={playing && animated}>
+    <div className={styles.deckHeader}><span>{heading}</span><span>STEREO / 01</span></div>
     <div className={styles.cassette}>
       <span className={`${styles.screw} ${styles.screwOne}`} aria-hidden="true" />
       <span className={`${styles.screw} ${styles.screwTwo}`} aria-hidden="true" />
       <div className={styles.tapeLabel}>
-        <div className={styles.trackName}><span className={styles.sideA}>A</span><div><h2>River</h2><p>Eminem feat. Ed Sheeran</p></div><span className={styles.mixLabel}>a favorite<br />on repeat ♡</span></div>
+        <div className={styles.trackName}><span className={styles.sideA}>A</span><div><h2>{track.title}</h2><p>{track.artist}</p></div><span className={styles.mixLabel}>{chapter ? <>a little<br />reading music</> : <>a favorite<br />on repeat ♡</>}</span></div>
         <div className={styles.reelWindow} aria-hidden="true"><TapeReel /><span className={styles.tapeBridge}><i /><i /><i /><i /><i /></span><TapeReel /></div>
         <div className={styles.tapeDetails}><span>NORMAL BIAS / TYPE I</span><span>C-90</span></div>
       </div>
@@ -189,9 +200,9 @@ export default function RiverPlayer({ animated }: { animated: boolean }) {
     </div>
     <div className={styles.deckPanel}>
       <SegmentedSpectrum playing={playing} animated={animated} analyser={analyser} />
-      <div className={styles.displayLabel}><span>{RIVER_PLAYER.audioSrc ? "live audio spectrum" : "playback animation"}</span><span>{!animated ? "motion off" : playing ? "tape rolling" : "tape ready"}</span></div>
-      {RIVER_PLAYER.audioSrc ? <AudioTrack src={RIVER_PLAYER.audioSrc} analyser={analyser} onPlaying={setPlaying} /> : <YouTubeTrack onPlaying={setPlaying} playing={playing} />}
-      <span className={styles.footnote}>if I had to pick just one…</span>
+      <div className={styles.displayLabel}><span>{track.audioSrc ? "live audio spectrum" : "playback animation"}</span><span>{!animated ? "motion off" : playing ? "tape rolling" : "tape ready"}</span></div>
+      {track.audioSrc ? <AudioTrack key={track.audioSrc} src={track.audioSrc} title={track.title} analyser={analyser} onPlaying={setPlaying} /> : track.youtubeId ? <YouTubeTrack key={track.youtubeId} initialVolume={chapter ? 30 : 65} track={{ ...track, youtubeId: track.youtubeId }} onPlaying={setPlaying} playing={playing} /> : <p className={styles.status}>This chapter’s tape hasn’t been chosen yet.</p>}
+      <span className={styles.footnote}>{footnote}</span>
     </div>
   </aside>;
 }

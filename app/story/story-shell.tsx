@@ -16,8 +16,8 @@ export default function StoryShell({ chapters, children }: { chapters: Chapter[]
   useEffect(() => {
     if (menu.current) menu.current.open = window.matchMedia("(min-width: 901px)").matches;
     const selected = menu.current?.querySelector<HTMLElement>('[aria-current="page"]');
-    const list = menu.current?.querySelector<HTMLElement>('[data-chapter-list]');
-    if (selected && list) list.scrollTop = selected.offsetTop - list.offsetTop - list.clientHeight / 3;
+    const list = window.matchMedia("(min-width: 901px)").matches ? menu.current : menu.current?.querySelector<HTMLElement>('[data-chapter-list]');
+    if (selected && list) list.scrollTop += selected.getBoundingClientRect().top - list.getBoundingClientRect().top - list.clientHeight / 3;
   }, [pathname]);
   useEffect(() => {
     const query = window.matchMedia("(min-width: 901px)");
@@ -50,6 +50,7 @@ export default function StoryShell({ chapters, children }: { chapters: Chapter[]
                 <Link href="/story" aria-current={pathname === "/story" ? "page" : undefined}>the beginning / about</Link>
                 <Link href="/story/characters" aria-current={pathname === "/story/characters" ? "page" : undefined}>meet the characters <span>♡</span></Link>
               </div>
+              <Link href="/story/dialogue-preview" aria-current={pathname === "/story/dialogue-preview" ? "page" : undefined} style={{ display: "block", padding: "12px", font: "12px/1.5 Courier New, monospace" }}>dialogue study / preview</Link>
               <p className={styles.navLabel}>THE CHAPTERS / {chapters.length} PAGES TO GET LOST IN</p>
               <ol className={styles.chapterList} data-chapter-list>
                 {chapters.map(chapter => <li key={chapter.slug}><Link prefetch={false} href={`/story/${chapter.slug}`} aria-current={active?.slug === chapter.slug ? "page" : undefined}><span>{String(chapter.number).padStart(2, "0")}</span>{chapter.title}</Link></li>)}
