@@ -1,195 +1,31 @@
-.dock {
-	position: fixed;
-	z-index: 60;
-	right: 0;
-	top: 50%;
-	transform: translateY(-50%);
-	width: min(490px, calc(100vw - 12px));
-	max-height: calc(100dvh - 24px);
-	padding: 24px 70px 24px 24px;
-	pointer-events: none;
-	color: #172048;
-	font:
-		14px / 1.5 "Trebuchet MS",
-		sans-serif;
+.dock { position:fixed; z-index:60; right:0; top:50%; transform:translateY(-50%); width:min(490px,calc(100vw - 12px)); max-height:calc(100dvh - 24px); padding:24px 70px 24px 24px; pointer-events:none; color:#172048; font:14px/1.5 "Trebuchet MS",sans-serif; }
+.dock[data-open="true"] { pointer-events:auto; }
+.tab { position:absolute; right:0; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; width:62px; min-height:138px; padding:15px 7px; border:2px solid #172048; border-right:0; border-radius:10px 0 0 10px; background:#fff5d4; color:#172048; cursor:pointer; pointer-events:auto; }
+.tab svg { width:38px; height:28px; }
+.tab > span { font:20px/1.2 "Kalam",cursive; }
+.tab small { font:9px/1.5 "Courier New",monospace; }
+.playingDot { width:7px; height:7px; border-radius:50%; background:#65892e; }
+.panel { visibility:hidden; opacity:0; transition:opacity .16s; padding:12px; background:#fffdf0; border:1px solid #172048; border-radius:10px; }
+.dock[data-open="true"] .panel { visibility:visible; opacity:1; }
+.panelTop { display:flex; justify-content:space-between; align-items:center; gap:10px; padding:0 0 10px; font:10px/1.5 "Courier New",monospace; }
+.panelTop button { display:flex; align-items:center; gap:6px; min-height:36px; padding:5px 9px; background:#f3d1df; border:1px solid #172048; border-radius:4px; font:11px/1.5 "Courier New",monospace; color:#172048; cursor:pointer; }
+.panelTop button span { font-size:20px; }
+.scroll { max-height:calc(100dvh - 140px); overflow-y:auto; overscroll-behavior:contain; scrollbar-width:thin; scrollbar-color:#a784a0 #eee6d7; padding:0 8px 8px 0; }
+.wrap { width:100%; min-width:0; }
+.wrap > aside { transform:none; }
+.wrap h2 { margin:0!important; overflow-wrap:anywhere; }
+.wrap p { margin-bottom:0!important; white-space:normal!important; }
+.source { display:flex; align-items:center; gap:7px; width:fit-content; margin:16px auto 0; color:#344789; font:11px/1.5 "Courier New",monospace; text-underline-offset:4px; }
+.source svg { width:14px; height:14px; }
+.dock button:focus-visible, .source:focus-visible { outline:3px solid #db4583; outline-offset:3px; }
+@media(max-width:700px), (hover:none) {
+  .dock { top:auto; bottom:calc(48px + env(safe-area-inset-bottom,0px)); right:10px; transform:none; width:min(420px,calc(100vw - 20px)); max-height:calc(100dvh - 64px); padding:0 0 64px; }
+  .tab { top:auto; bottom:0; right:0; transform:none; flex-direction:row; flex-wrap:wrap; width:134px; min-height:52px; padding:8px 12px; gap:6px; border:2px solid #172048; border-radius:8px; }
+  .tab svg { width:29px; height:22px; }
+  .tab small { font-size:8px; }
+  .scroll { max-height:calc(100dvh - 200px); }
+  .panel { padding:10px; }
+  .wrap > aside { padding:8px; }
 }
-.dock[data-open="true"] {
-	pointer-events: auto;
-}
-.tab {
-	position: absolute;
-	right: 0;
-	top: 50%;
-	transform: translateY(-50%);
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	gap: 6px;
-	width: 62px;
-	min-height: 138px;
-	padding: 15px 7px;
-	border: 2px solid #172048;
-	border-right: 0;
-	border-radius: 10px 0 0 10px;
-	background: #fff5d4;
-	color: #172048;
-	cursor: pointer;
-	pointer-events: auto;
-}
-.tab svg {
-	width: 38px;
-	height: 28px;
-}
-.tab > span {
-	font:
-		20px / 1.2 "Kalam",
-		cursive;
-}
-.tab small {
-	font:
-		9px / 1.5 "Courier New",
-		monospace;
-}
-.playingDot {
-	width: 7px;
-	height: 7px;
-	border-radius: 50%;
-	background: #65892e;
-}
-.panel {
-	visibility: hidden;
-	opacity: 0;
-	transition: opacity 0.16s;
-	padding: 12px;
-	background: #fffdf0;
-	border: 1px solid #172048;
-	border-radius: 10px;
-}
-.dock[data-open="true"] .panel {
-	visibility: visible;
-	opacity: 1;
-}
-.panelTop {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	gap: 10px;
-	padding: 0 0 10px;
-	font:
-		10px / 1.5 "Courier New",
-		monospace;
-}
-.panelTop button {
-	display: flex;
-	align-items: center;
-	gap: 6px;
-	min-height: 36px;
-	padding: 5px 9px;
-	background: #f3d1df;
-	border: 1px solid #172048;
-	border-radius: 4px;
-	font:
-		11px / 1.5 "Courier New",
-		monospace;
-	color: #172048;
-	cursor: pointer;
-}
-.panelTop button span {
-	font-size: 20px;
-}
-.scroll {
-	max-height: calc(100dvh - 140px);
-	overflow-y: auto;
-	overscroll-behavior: contain;
-	scrollbar-width: thin;
-	scrollbar-color: #a784a0 #eee6d7;
-	padding: 0 8px 8px 0;
-}
-.wrap {
-	width: 100%;
-	min-width: 0;
-}
-.wrap > aside {
-	transform: none;
-}
-.wrap h2 {
-	margin: 0 !important;
-	overflow-wrap: anywhere;
-}
-.wrap p {
-	margin-bottom: 0 !important;
-	white-space: normal !important;
-}
-.source {
-	display: flex;
-	align-items: center;
-	gap: 7px;
-	width: fit-content;
-	margin: 16px auto 0;
-	color: #344789;
-	font:
-		11px / 1.5 "Courier New",
-		monospace;
-	text-underline-offset: 4px;
-}
-.source svg {
-	width: 14px;
-	height: 14px;
-}
-.dock button:focus-visible,
-.source:focus-visible {
-	outline: 3px solid #db4583;
-	outline-offset: 3px;
-}
-@media (max-width: 700px), (hover: none) {
-	.dock {
-		top: auto;
-		bottom: calc(48px + env(safe-area-inset-bottom, 0px));
-		right: 10px;
-		transform: none;
-		width: min(420px, calc(100vw - 20px));
-		max-height: calc(100dvh - 64px);
-		padding: 0 0 64px;
-	}
-	.tab {
-		top: auto;
-		bottom: 0;
-		right: 0;
-		transform: none;
-		flex-direction: row;
-		flex-wrap: wrap;
-		width: 134px;
-		min-height: 52px;
-		padding: 8px 12px;
-		gap: 6px;
-		border: 2px solid #172048;
-		border-radius: 8px;
-	}
-	.tab svg {
-		width: 29px;
-		height: 22px;
-	}
-	.tab small {
-		font-size: 8px;
-	}
-	.scroll {
-		max-height: calc(100dvh - 200px);
-	}
-	.panel {
-		padding: 10px;
-	}
-	.wrap > aside {
-		padding: 8px;
-	}
-}
-@media (prefers-reduced-motion: reduce) {
-	.panel {
-		transition: none;
-	}
-}
-@media print {
-	.dock {
-		display: none;
-	}
-}
+@media(prefers-reduced-motion:reduce) { .panel { transition:none; } }
+@media print { .dock { display:none; } }
