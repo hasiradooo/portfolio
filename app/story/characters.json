@@ -1,0 +1,854 @@
+[
+	{
+		"name": "Kiro",
+		"kind": "fox-cat hybrid",
+		"color": "#ead5ac",
+		"tagline": "soft sweaters, loud thoughts",
+		"summary": "A pale cream-and-golden fox-cat with blue eyes, chestnut hair, big dark-edged ears, a very fluffy tail, and an olive sheep-covered sweater. Playful when he feels safe; a little too good at overthinking.",
+		"paragraphs": [
+			{
+				"runs": [
+					{
+						"text": "Kiro is an anthropomorphic fox-cat hybrid with a slim build and a soft, fluffy silhouette. He can be drawn with simple, expressive features and rough, textured lines.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "His appearance leans toward a fox: a gently pointed muzzle, large upright ears, fluffy cheeks, a thick neck ruff, and a long, very bushy tail. His feline traits include retractable claws that he can extend and hide like a cat.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "His fur is mostly pale cream and warm ivory, with soft biscuit and golden-tan shading rather than a strong orange base. His muzzle, cheeks, neck ruff, and paws are especially light. Dark chocolate-brown fur outlines his ears, with peach-tan inner ears and pale tufts. His tail mixes cream and golden-tan fur with a darker brown outer sweep.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "His chestnut-brown hair falls in a thick, messy, side-swept fringe and continues in longer tufts behind his head and neck. He has a small black nose and subtle dark markings near the bridge of his muzzle.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "His eyes are ",
+						"italic": true
+					},
+					{
+						"text": "blue",
+						"bold": true,
+						"italic": true
+					},
+					{
+						"text": ", clear and expressive.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Most of the time his expression looks gentle, awkward, curious, or tired. When he dissociates or gets pulled into a memory, that expression can suddenly become completely empty.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "The simplicity of his face makes those moments feel much more wrong.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Kiro usually wears light blue jeans and a loose olive-green knitted sweater, with ribbed cuffs and a ribbed collar. Little cream sheep with dark faces and legs cover it. One black sheep sits among the cream ones.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Sometimes he wears a red plaid shirt instead, usually loose over a simple T-shirt.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "He likes clothes that feel warm and comfortable, but he cares more about his appearance than he admits. When nervous, he adjusts his sleeves, fixes his clothes, checks whether something is sitting correctly, or tries to cover more of himself.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Kiro loves autumn.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Cool air, but not freezing weather.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Warm rooms while it rains outside.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Hot chocolate.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Pumpkins.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Fallen leaves.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Cloudy afternoons.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "He also loves minerals, crystals, interesting rocks, and little objects he finds visually interesting. His house slowly accumulates them on shelves, tables, and windowsills.",
+						"italic": true
+					}
+				]
+			},
+			"He also loves astronomy: stars, planets, and looking up at the night sky. It is another kind of quiet curiosity, alongside his collection of minerals and crystals.",
+			{
+				"runs": [
+					{
+						"text": "Kiro can be sarcastic, playful, and surprisingly talkative when he feels safe.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "When he doesn't, he becomes much quieter.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "He overthinks relationships, intimacy, how other people see him, whether he is becoming annoying, and whether people are eventually going to leave.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "He apologizes too often.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Even when nobody is angry.",
+						"italic": true
+					}
+				]
+			}
+		],
+		"id": "kiro",
+		"group": "main",
+		"appearances": [
+			"visit",
+			"air",
+			"wrong",
+			"redirect",
+			"hours",
+			"second",
+			"still",
+			"tracks",
+			"warm",
+			"quiet",
+			"seen",
+			"watching-listening",
+			"frame",
+			"late",
+			"tomorrow",
+			"wait",
+			"gift",
+			"first",
+			"lonely-dance",
+			"else",
+			"floor",
+			"morning",
+			"story",
+			"after",
+			"passenger",
+			"concert",
+			"couple",
+			"road",
+			"tower",
+			"leftovers",
+			"home",
+			"shift",
+			"gone",
+			"normal",
+			"upstairs",
+			"voice"
+		]
+	},
+	{
+		"name": "Rin",
+		"kind": "black cat",
+		"color": "#cbcce2",
+		"tagline": "dark hoodie, dry humor",
+		"summary": "Late nights, bad horror movies, and jokes when things get uncomfortable. He cares about Kiro, even when he doesn’t know how to help.",
+		"paragraphs": [
+			{
+				"runs": [
+					{
+						"text": "Rin is an anthropomorphic black cat who can be drawn in the same simple, doodle-like style.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "He has a slim build, pointed ears, a long tail, and usually looks calm, tired, or slightly uninterested.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "His fur is almost completely black, with softer charcoal-gray areas sometimes visible around his muzzle, chest, or paws depending on the lighting.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "His eyes are yellow-orange, somewhere between amber and burnt gold.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Rin usually wears an oversized dark hoodie.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "The hoodie is most often black, charcoal, faded navy, or another very dark color. The sleeves are deliberately too long and usually cover most of his paws.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Under them, his arms are covered in old scars.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Some are faint.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Some are easier to see.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "He rarely shows them.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "The rest of his clothes are simple and dark.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Cargo pants.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Washed black jeans.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Old sneakers.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "He dresses mostly for comfort and partly to hide himself.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Rin also has one or two small silver ear piercings. They are subtle and do not stand out much compared to the rest of his design.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "He likes late nights, rain, empty streets, bad horror movies, loud music, cheap snacks, cigarettes, and conversations that accidentally become serious at two in the morning.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "His room is messy without being dirty.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Cables.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Headphones.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Empty cans.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Old games or movies.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Receipts he never throws away.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Random things sitting in places where they probably should not be.\nHis humor is dry and casual.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "He swears a lot and often jokes when things become uncomfortable because he does not know what else to do.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Rin cares about Kiro.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "He notices small changes in Kiro's behavior, posture, expression, or voice.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Sometimes he asks about them.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Sometimes he deliberately leaves them alone.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "He is not especially good at helping people.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Sometimes he helps.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Sometimes he makes things worse.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "He knows some of his coping mechanisms are unhealthy and still uses them.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "He is not Kiro's therapist.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "He is another damaged person sitting beside him.",
+						"italic": true
+					}
+				]
+			}
+		],
+		"id": "rin",
+		"group": "main",
+		"appearances": [
+			"redirect",
+			"hours",
+			"second",
+			"still",
+			"tracks",
+			"quiet",
+			"late",
+			"tomorrow",
+			"wait",
+			"gift",
+			"first",
+			"gone"
+		]
+	},
+	{
+		"name": "Susie",
+		"kind": "badger",
+		"color": "#c5d2b4",
+		"tagline": "old CDs & second-hand finds",
+		"summary": "Susan to some, Susie to most. Small concerts, photography, strange mugs, and plants she’s trying to keep alive.",
+		"paragraphs": [
+			{
+				"runs": [
+					{
+						"text": "Susie is an anthropomorphic badger who can be drawn in the same simple, slightly rough style.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "She has a medium, slightly soft build and a relaxed posture.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Her fur is mostly dark charcoal or black, with cream-white badger markings across her face, muzzle, neck, and parts of her chest.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Her hair is black, messy, naturally wavy or slightly curly, and usually reaches somewhere around her jaw or just above her shoulders.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "It rarely sits perfectly.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "She often pushes loose strands away from her face without thinking about it.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Her eyes are gray-green.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Not bright green.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "More muted, somewhere between moss, sage, and cloudy green-gray.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Susie usually wears a loose green plaid overshirt, most often open over a simple T-shirt.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "The green is muted, closer to forest green, olive, or faded dark green.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "She wears relaxed blue jeans and worn sneakers.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Her clothes are comfortable, casual, and slightly messy without looking neglected.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Other outfits can include oversized sweaters, old band shirts, denim jackets, and second-hand clothes.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Susie likes second-hand shops, small concerts, old CDs and physical media, strange mugs, small cafés, photography, and plants she is only moderately successful at keeping alive.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "She also tends to collect small pins, patches, keychains, or other little objects without really thinking of herself as a collector.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Her humor is quieter than Rin's.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "She can tease someone very casually and sometimes does not realize how seriously Kiro takes something she said.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Susie is observant, but not perfectly emotionally intelligent.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "She often notices when somebody is uncomfortable and tends to give them physical space instead of immediately asking questions.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "She can still misunderstand people, get irritated, say the wrong thing, or ignore something she should probably address.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "She has her own problems and history that Kiro does not know about yet.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Susie does not become interested in Kiro because of his problems.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "She simply likes him.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "That difference is difficult for Kiro to understand.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "She normally introduces herself as Susan, but most people call her Susie.",
+						"italic": true
+					}
+				]
+			},
+			{
+				"runs": [
+					{
+						"text": "Kiro sometimes calls her Susan when he is nervous, serious, upset, or overthinking without really noticing that he does it.",
+						"italic": true
+					}
+				]
+			}
+		],
+		"id": "susie",
+		"group": "main",
+		"appearances": [
+			"still",
+			"tracks",
+			"warm",
+			"quiet",
+			"seen",
+			"watching-listening",
+			"frame",
+			"late",
+			"tomorrow",
+			"wait",
+			"gift",
+			"first",
+			"else",
+			"floor",
+			"morning",
+			"story",
+			"after",
+			"passenger",
+			"concert",
+			"couple",
+			"road",
+			"tower",
+			"leftovers",
+			"home",
+			"shift",
+			"gone",
+			"normal",
+			"upstairs",
+			"voice"
+		]
+	},
+	{
+		"id": "martin",
+		"name": "Martin",
+		"kind": "badger / Susie’s father",
+		"color": "#bdc7c6",
+		"tagline": "a crooked cabinet & a dry joke",
+		"summary": "Susie’s dad. An older badger with gray eyes, a practical streak, and a sense of humor that runs in the family.",
+		"appearances": ["gift", "first", "upstairs", "voice"],
+		"paragraphs": [
+			"Martin first meets Kiro properly at Susie’s birthday. He can be blunt and misjudge a joke, but notices when it lands badly.",
+			"He makes room for Kiro in ordinary ways: food, coffee, a conversation in the kitchen. He does not turn every awkward moment into a speech.",
+			"In “Voice,” a cabinet repair brings Kiro’s memories into the room. Martin listens once Kiro can explain, keeps his distance when needed, and admits that he does not understand everything."
+		],
+		"group": "side"
+	},
+	{
+		"id": "jamie",
+		"name": "Jamie",
+		"kind": "dog / Susie’s former coworker",
+		"color": "#d1b497",
+		"tagline": "an old friend at the wrong moment",
+		"summary": "A brown dog in a denim jacket. He and Susie worked together years ago and share old jokes, coworkers, and concert memories.",
+		"appearances": ["else", "floor", "story", "after", "concert"],
+		"paragraphs": [
+			"Jamie meets Kiro outside the café in “Else.” He is friendly, offers his paw, and catches up with Susie.",
+			"Kiro’s reaction to their familiarity is tied to his own past. Jamie is not shown doing anything wrong. Kiro later says so himself.",
+			"After Kiro runs, Jamie stays with Susie for part of the aftermath. His name comes up again as Kiro and Susie talk through what happened."
+		],
+		"group": "side"
+	},
+	{
+		"id": "shop-owner",
+		"name": "Rowan",
+		"kind": "raccoon · 38 · record shop owner",
+		"color": "#c4bea2",
+		"tagline": "welcome back. now stop cleaning.",
+		"summary": "A 38-year-old raccoon who owns the record shop where Kiro works. Dry, observant, and quietly caring, he knows when to tell Kiro that enough is enough.",
+		"appearances": ["frame", "shift"],
+		"paragraphs": [
+			"Rowan is an anthropomorphic raccoon, aged 38. Older than Kiro, but not an elderly mentor: he is a working adult with his own shop, routines, and a dry sense of humor.",
+			"He has gray-brown fur, a dark mask around his eyes, rounded ears, and a thick ringed tail. His clothes are practical and comfortable: a faded band shirt, an open overshirt, and worn jeans.",
+			"In “Frame,” Kiro explains that the owner gave him time away from work rather than watch him wear himself down.",
+			"In “Shift,” he welcomes Kiro back without a grand speech. He notices the nervous cleaning, asks how he is, and sets limits when Kiro tries to prove too much."
+		],
+		"group": "side"
+	}
+]

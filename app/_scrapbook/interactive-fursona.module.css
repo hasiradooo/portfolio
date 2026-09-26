@@ -1,67 +1,67 @@
 .portrait {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1;
-  background: white;
-  isolation: isolate;
+	position: relative;
+	width: 100%;
+	aspect-ratio: 1;
+	background: white;
+	isolation: isolate;
 }
 
-.portrait>.art {
-  position: absolute;
-  inset: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  max-width: none;
-  object-fit: cover;
-  object-position: right center;
-  pointer-events: none;
+.portrait > .art {
+	position: absolute;
+	inset: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	max-width: none;
+	object-fit: cover;
+	object-position: right center;
+	pointer-events: none;
 }
 
 .closed {
-  opacity: 0;
+	opacity: 0;
 }
 
 .portrait[data-petting="true"] .closed {
-  opacity: 1;
+	opacity: 1;
 }
 
 .head,
 .nose {
-  position: absolute;
-  z-index: 2;
-  display: block;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  box-shadow: none;
-  touch-action: manipulation;
+	position: absolute;
+	z-index: 2;
+	display: block;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	box-shadow: none;
+	touch-action: manipulation;
 }
 
 .head {
-  left: 33%;
-  top: 3%;
-  width: 44%;
-  height: 38%;
-  border-radius: 45%;
-  cursor: grab;
+	left: 33%;
+	top: 3%;
+	width: 44%;
+	height: 38%;
+	border-radius: 45%;
+	cursor: grab;
 }
 
 .head:active {
-  cursor: grabbing;
+	cursor: grabbing;
 }
 
 .nose {
-  left: 39%;
-  top: 40%;
-  width: 11%;
-  height: 10%;
-  border-radius: 0;
-  cursor: pointer;
-  /* border: 2px solid #ff2020; */
-  /* background: rgb(255 0 0 / 22%); */
-  box-sizing: border-box;
+	left: 39%;
+	top: 40%;
+	width: 11%;
+	height: 10%;
+	border-radius: 0;
+	cursor: pointer;
+	/* border: 2px solid #ff2020; */
+	/* background: rgb(255 0 0 / 22%); */
+	box-sizing: border-box;
 }
 
 /* .nose:hover {
@@ -79,65 +79,65 @@
 } */
 
 .hearts {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  pointer-events: none;
+	position: absolute;
+	inset: 0;
+	z-index: 3;
+	pointer-events: none;
 }
 
 .rising {
-  position: absolute;
-  left: var(--left);
-  top: 24%;
-  color: var(--color);
-  font-size: var(--size);
-  line-height: 1;
-  animation: rise var(--life) ease-out forwards;
+	position: absolute;
+	left: var(--left);
+	top: 24%;
+	color: var(--color);
+	font-size: var(--size);
+	line-height: 1;
+	animation: rise var(--life) ease-out forwards;
 }
 
 .wave {
-  display: block;
-  text-shadow: 0 1px 2px #fff9;
-  animation: sway 700ms ease-in-out infinite alternate;
+	display: block;
+	text-shadow: 0 1px 2px #fff9;
+	animation: sway 700ms ease-in-out infinite alternate;
 }
 
 @keyframes rise {
-  0% {
-    opacity: 0;
-    transform: translate(0, 0) scale(.6) rotate(var(--spin));
-  }
+	0% {
+		opacity: 0;
+		transform: translate(0, 0) scale(0.6) rotate(var(--spin));
+	}
 
-  15% {
-    opacity: 1;
-  }
+	15% {
+		opacity: 1;
+	}
 
-  75% {
-    opacity: .85;
-  }
+	75% {
+		opacity: 0.85;
+	}
 
-  100% {
-    opacity: 0;
-    transform: translate(var(--drift), -145px) scale(1.1) rotate(var(--spin));
-  }
+	100% {
+		opacity: 0;
+		transform: translate(var(--drift), -145px) scale(1.1) rotate(var(--spin));
+	}
 }
 
 @keyframes sway {
-  from {
-    transform: translateX(calc(-1 * var(--wave)));
-  }
+	from {
+		transform: translateX(calc(-1 * var(--wave)));
+	}
 
-  to {
-    transform: translateX(var(--wave));
-  }
+	to {
+		transform: translateX(var(--wave));
+	}
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hearts {
-    display: none;
-  }
+	.hearts {
+		display: none;
+	}
 
-  .rising,
-  .wave {
-    animation: none;
-  }
+	.rising,
+	.wave {
+		animation: none;
+	}
 }
