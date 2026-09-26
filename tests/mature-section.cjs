@@ -1,0 +1,31 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const ts = require('typescript');
+const React = require('react');
+const {renderToStaticMarkup} = require('react-dom/server');
+for (const ext of ['.ts', '.tsx']) require.extensions[ext] = (module, filename) => module._compile(ts.transpileModule(fs.readFileSync(filename, 'utf8'), {
+  compilerOptions: {module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX, esModuleInterop: true}
+}).outputText, filename);
+require.extensions['.css'] = module => {module.exports = new Proxy({}, {get: (_, key) => key === '__esModule' ? false : String(key)});};
+const {readStoryDocx} = require('../app/story/read-story-docx.ts');
+const {splitStorySections} = require('../app/story/story-sections.ts');
+const MatureSection = require('../app/story/mature-section.tsx').default;
+const styled = {runs:[{text:'A supplied paragraph.',italic:true}]};
+const dialogue = {runs:[{text:'[[speech speaker=kiro]] Example dialogue.',bold:true}]};
+const result=splitStorySections(['Before','[[nsfw]]',styled,dialogue,'[[/nsfw]]','After','[[NSFW]]','Second passage','[[/NSFW]]']);
+assert.deepEqual(result.map(s=>s.mature),[false,true,false,true]);
+assert.deepEqual(result.map(s=>s.paragraphs),[['Before'],[styled,dialogue],['After'],['Second passage']]);
+assert.strictEqual(result[1].paragraphs[0],styled);
+assert.deepEqual(splitStorySections(['Normal text']),[{mature:false,paragraphs:['Normal text']}]);
+assert.deepEqual(splitStorySections([{runs:[{text:'[[ns'},{text:'fw]]',bold:true}]},styled,'[[/nsfw]]'])[0].paragraphs,[styled]);
+assert.deepEqual(splitStorySections([]),[]);
+for (const bad of [ ['[[nsfw]]','Text'], ['[[/nsfw]]'], ['[[nsfw]]','[[nsfw]]','Text','[[/nsfw]]'], ['[[nsfw]]','[[/nsfw]]'], ['[[nsfw]] Text','[[/nsfw]]'], ['[[nsfw]]','Text [[/nsfw]]'] ]) assert.throws(()=>splitStorySections(bad,'Example chapter'),/Example chapter:/);
+for (const chapter of readStoryDocx()) splitStorySections(chapter.paragraphs,chapter.title);
+const html = renderToStaticMarkup(React.createElement(MatureSection, null, React.createElement('p', null, 'PRIVATE_PASSAGE_TEST')));
+assert.ok(html.includes('aria-expanded="false"'));
+assert.ok(html.includes('18+ / NSFW'));
+assert.ok(html.includes('explicit sexual content'));
+assert.ok(html.includes('Skip this section'));
+assert.ok(!html.includes('PRIVATE_PASSAGE_TEST'));
+assert.ok(!/ko-fi|patreon/i.test(html));
+console.log('PASS: single-source manuscript, multiple marked sections, styled runs preserved, malformed markers rejected, warning closed by default.');

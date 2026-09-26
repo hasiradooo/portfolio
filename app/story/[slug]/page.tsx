@@ -6,6 +6,7 @@ import Icon from "@/app/_scrapbook/scrapbook-icon";
 import { chapters, chapterHref } from "../story-data";
 import { storyMetadata } from "../story-meta";
 import StoryParagraphs from "../story-paragraphs";
+import MatureSection from "../mature-section";
 import styles from "../story.module.css";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -61,7 +62,13 @@ export default async function ChapterPage({ params }: Props) {
 					/>
 				)}
 				<div className={styles.prose}>
-					<StoryParagraphs paragraphs={chapter.paragraphs} music={music} />
+					{chapter.sections.map((section, sectionIndex) => section.mature ? (
+						<MatureSection key={`${slug}-${sectionIndex}`}>
+							<StoryParagraphs paragraphs={section.paragraphs} music={music} />
+						</MatureSection>
+					) : (
+						<StoryParagraphs key={`${slug}-${sectionIndex}`} paragraphs={section.paragraphs} music={music} />
+					))}
 				</div>
 				<div className={styles.chapterEnd}>
 					✶<span>end of chapter {chapter.number}</span>✶
