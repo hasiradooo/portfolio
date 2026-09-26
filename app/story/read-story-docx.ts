@@ -37,7 +37,7 @@ export const paragraphText = (p: StoryParagraph) =>
 
 /** Read trusted, author-owned DOCX on the server. No HTML injection or browser download. */
 export function readStoryDocx(
-	filename = path.join(process.cwd(), "content", "kiro-story.docx"),
+	filename = path.join(process.cwd(), "content", "Kiro's story.docx"),
 ): Chapter[] {
 	const archive = unzipSync(readFileSync(filename), {
 		filter: (entry) =>
@@ -169,27 +169,9 @@ export function readStoryDocx(
 			throw new Error(
 				"The DOCX must begin with a Title or Heading 1 chapter title",
 			);
-		const todo = "// TODO: add link to ko-fi for nsfw part";
-		let selected = runs;
-		if (text.includes(todo)) {
-			if (chapter.slug !== "upstairs")
-				throw new Error("Unexpected Ko-fi TODO outside Upstairs");
-			let remaining = text.indexOf(todo);
-			selected = runs.flatMap((run) => {
-				const part = run.text.slice(0, Math.max(0, remaining));
-				remaining -= run.text.length;
-				return part ? [{ ...run, text: part }] : [];
-			});
-		}
 		chapter.paragraphs.push(
-			selected.some((r) => Object.keys(r).length > 1)
-				? { runs: selected }
-				: selected.map((r) => r.text).join(""),
+			runs.some((run) => Object.keys(run).length > 1) ? { runs } : text,
 		);
-		if (text.includes(todo))
-			chapter.paragraphs.push(
-				"[NOTE: NSFW PART on https://ko-fi.com/hasiradooo]",
-			);
 	}
 	if (!chapters.length || chapters.some((c) => !c.paragraphs.length))
 		throw new Error("The story contains no chapters or an empty chapter");
